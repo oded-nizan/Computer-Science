@@ -15,7 +15,7 @@ public class Main
         int m = 0;
         for (int i = 0; i < arrH.length; i++)
         {
-            if (arrH[i].areaCode == areaCode)
+            if (arrH[i].getAreaCode() == areaCode)
             {
                 m++;
             }
@@ -30,9 +30,9 @@ public class Main
         int m = housesInArea(arrH, areaCode);
         for (int i = 0; i < arrH.length; i++)
         {
-            if (arrH[i].areaCode == areaCode)
+            if (arrH[i].getAreaCode() == areaCode)
             {
-                sum += arrH[i].houseSquareFootage;
+                sum += arrH[i].getHouseSquareFootage();
             }
         }
         avg = sum / m;

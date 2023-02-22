@@ -1,9 +1,9 @@
 public class House {
 
-    String landlordName;
-    int areaCode;
-    int houseSquareFootage;
-    int tenants;
+    private String landlordName;
+    private int areaCode;
+    private int houseSquareFootage;
+    private int tenants;
 
     public House(String landlordName, int areaCode, int houseSquareFootage, int tenants)
     {

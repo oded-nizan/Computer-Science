@@ -53,9 +53,18 @@ public class Sniper {
         this.shootsOnTarget = shootsOnTarget;
     }
 
+    public int percentHit()
+    {
+        return this.shootsOnTarget * 100 / shootsFired;
+    }
+
+
     public String toString()
     {
         String toString = "The sniper's id is : " + this.id + "\n";
-        toString =toString + "The sniper's code is : " + this.code + "\n";
+        toString = toString + "The sniper's code is : " + this.code + "\n";
+        toString = toString + "The amount of shots the Sniper fired is : " + shootsFired + "\n";
+        toString = toString + "The amount of shots the Sniper hit is : " + shootsOnTarget + "\n";
+        return toString;
     }
 }
