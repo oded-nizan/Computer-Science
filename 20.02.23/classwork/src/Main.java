@@ -28,7 +28,7 @@ public class Main {
 			}
 		}
 
-	public static int bestSniper(Sniper[] arr)
+	public static void bestSniper(Sniper[] arr)
 		{
 			int index = 0;
 			int max = arr[0].percentHit();
@@ -40,8 +40,39 @@ public class Main {
 					index = i;
 				}	
 			}
-			return index;
+			System.out.println("The best sniper is No." + index + " in the array.");
+			System.out.println(arr[index].toString());
 		}
+
+	public static void printMenu()
+	{
+		
+		System.out.println("Please enter one of the following to determen your next action:" + "\n" + "1: print the data of all snipers in the array" + "\n" + "2: print the index and the stats of the best sniper in the array" + "\n" + "-1: exit the menu and terminate the program");
+	}
+
+	public static void Menu(Sniper[] arr)
+	{
+		int x = 0;
+		while(x != -1)
+		{
+			printMenu();
+			x = input.nextInt();
+			switch(x)
+			{
+				case 1: printSniperArray(arr);
+						break;
+				
+				case 2: bestSniper(arr);
+						break;
+
+				case -1: System.out.println("You have exited this program");
+						 break;
+
+				default: System.out.println("You have entered invalid input");
+			}
+		}
+	}
+
 
 
 
@@ -50,7 +81,6 @@ public class Main {
    		
 		Sniper[] arr = new Sniper[100];
 		fillSniperArray(arr);
-		printSniperArray(arr);
-		System.out.println("The best sniper in your array is : " + bestSniper(arr));
+		Menu(arr);
 	}
 }
