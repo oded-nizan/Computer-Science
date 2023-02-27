@@ -1,17 +1,56 @@
+import java.util.Scanner;
+import java.util.Random;
+
 public class Main {
-    public static void main(String[] args) {
-        Sniper s1 = new Sniper(5860145, 7, 1000, 1000);
+	
+	static Scanner input = new Scanner(System.in);
+	static Random random = new Random();
+	
+	public static void fillSniperArray(Sniper[] arr)
+	{
+		int x,y,z,k;
 
-        System.out.println(s1.getId());
-        System.out.println(s1.getCode());
-        System.out.println(s1.getShootsFired());
-        System.out.println(s1.getShootsOnTarget());
+		for(int i = 0; i < arr.length; i ++)
+		{
+			x = random.nextInt(899999) + 100000;
+			y = random.nextInt(4) + 1;
+			z = random.nextInt(100) + 100;
+			k = random.nextInt(z);
+			arr[i] = new Sniper(x,y,z,k);
+		}
+	}
 
-        s1.setId(15487);
-        s1.setCode(77);
-        s1.setShootsFired(1000);
-        s1.setShootsOnTarget(888);
+	public static void printSniperArray(Sniper[] arr)
+		{
+			for(int i = 0; i < arr.length; i ++)
+			{
+				System.out.println(arr[i].toString());
+			}
+		}
 
-        System.out.println("Your shots hit percent is : " + s1.percentHit());
-    }
+	public static int bestSniper(Sniper[] arr)
+		{
+			int index = 0;
+			int max = arr[0].percentHit();
+			for(int i = 1; i < arr.length; i ++)
+			{
+				if(max < arr[i].percentHit())
+				{
+					max = arr[i].percentHit();
+					index = i;
+				}	
+			}
+			return index;
+		}
+
+
+
+
+	public static void main(String[] args) {
+   		
+		Sniper[] arr = new Sniper[100];
+		fillSniperArray(arr);
+		printSniperArray(arr);
+		System.out.println("The best sniper in your array is : " + bestSniper(arr));
+	}
 }
