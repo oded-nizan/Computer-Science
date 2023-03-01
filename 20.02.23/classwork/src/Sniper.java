@@ -58,6 +58,15 @@ public class Sniper {
         return this.shootsOnTarget * 100 / shootsFired;
     }
 
+    public boolean excellent()
+    {
+        if (this.percentHit() > 90)
+        {
+            return true;
+        }
+        return false;
+    }
+
 
     public String toString()
     {

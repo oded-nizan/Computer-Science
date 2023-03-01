@@ -653,21 +653,6 @@ public class Functions {
         return y;
     }
 
-    public static void bubble_sorting(int[] a)
-    {
-        for (int i = 0; i < a.length - 1; i++)
-        {
-            for (int k = 0; k < a.length - 1 - i; k++)
-            {
-                if (a[k] > a[k + 1])
-                {
-                    int z = a[k];
-                    a[k] = a[k + 1];
-                    a[k + 1] = z;
-                }
-            }
-        }
-    }
 
     public static void random_vote(int[] a)
     {
