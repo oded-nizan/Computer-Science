@@ -1,5 +1,5 @@
-import java.util.Scanner;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Main {
 	
@@ -20,25 +20,10 @@ public class Main {
 		}
 	}
 
-	public static void bubble_sortingDouble(double[] a)
-	{
-		for (int i = 0; i < a.length - 1; i++)
+	public static void print2DArrayDouble(double[][] a){
+		for (int i = 0; i < a[0].length; i ++)
 		{
-			for (int k = 0; k < a.length - 1 - i; k++)
-			{
-				if (a[k] > a[k + 1])
-				{
-					double z = a[k];
-					a[k] = a[k + 1];
-					a[k + 1] = z;
-				}
-			}
-		}
-	}
-
-	public static void print_arrayDouble(double[] a){
-		for (double j : a) {
-			System.out.println(j);
+			System.out.println(a[1][i] + ": " + a[0][i]);
 		}
 	}
 
@@ -117,6 +102,19 @@ public class Main {
 		System.out.println("The units number of excellent snipers is : " + m);
 	}
 
+	public static int excellentPerUnitI(Sniper[] arr, int p )
+	{
+		int m = 0;
+		for (int i = 0; i < arr.length; i ++)
+		{
+			if (arr[i].getCode() == p && arr[i].excellent())
+			{
+				m ++;
+			}
+		}
+		return m;
+	}
+
 	public static void excellentAllUnits(Sniper[] arr)
 	{
 		for (int i = 1; i <= 5; i ++)
@@ -133,20 +131,38 @@ public class Main {
 		{
 			System.out.print(i + ": ");
 			System.out.println(unitsAVG(arr, i));
-			System.out.println();
 		}
 	}
 
 
 	public static void sortedAvgAllUnits(Sniper[] arr)
 	{
-		double[] a = new double[5];
-		for (int i = 0; i < 5; i++)
+		double[][] a = new double[2][5];
+		for (int k = 1; k <= 5; k ++)
 		{
-			a[i] = unitsAVG(arr, i+1);
+			a[0][k-1] = unitsAVG(arr, k);
+			a[1][k-1] = k;
 		}
-		bubble_sortingDouble(a);
-		print_arrayDouble(a);
+
+		for (int i = 0; i < a[0].length - 1; i++)
+		{
+			for (int j = 0; j < a[0].length - 1; j ++)
+			{
+				if (a[0][j] < a[0][j+1])
+				{
+					double pl1 = a[0][j];
+					a[0][j] = a[0][j+1];
+					a[0][j+1] = pl1;
+
+					double pl2 = a[1][j];
+					a[1][j] = a[1][j+1];
+					a[1][j+1] = pl2;
+				}
+			}
+		}
+
+		avgAllUnits(arr);
+		print2DArrayDouble(a);
 	}
 
 	public static void printMenu()
