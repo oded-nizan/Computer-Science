@@ -165,6 +165,33 @@ public class Main {
 		print2DArrayDouble(a);
 	}
 
+	public static Sniper highestPercentHit(Sniper[] arr)
+	{
+		Sniper result = arr[0];
+		for (int i = 1; i < arr.length; i ++)
+		{
+			if (result.higherAccuracy(arr[i]) == -1)
+			{
+				result = arr[i];
+			}
+		}
+		return result;
+	}
+
+	public static Sniper highestPercentHitNew(Sniper[] arr)
+	{
+		Sniper result = arr[0];
+		for (int i = 1; i < arr.length; i ++)
+		{
+			if (result.higherAccuracy(arr[i]) == -1)
+			{
+				result = arr[i];
+			}
+		}
+		Sniper resultNew = new Sniper(result.getId(), result.getCode(), result.getShootsFired(), result.getShootsOnTarget());
+		return resultNew;
+	}
+
 	public static void printMenu()
 	{
 		
@@ -175,6 +202,7 @@ public class Main {
 		System.out.println("4: prints the number of excellent snipers for each unit");
 		System.out.println("5: prints the average shots hit percentage for all units");
 		System.out.println("6: prints the average shots hit percentage for all units in a sorted order");
+		System.out.println("7: prints the toString of the sniper with the highest avg");
 		System.out.println("-1: exit the program");
 		System.out.println("Please enter your choice: ");
 	}
@@ -212,6 +240,11 @@ public class Main {
 
 				case 6:
 					sortedAvgAllUnits(arr);
+					break;
+
+				case 7:
+					Sniper y = highestPercentHitNew(arr);
+					System.out.println(y.toString());
 					break;
 
 				case -1: System.out.println("You have exited this program");

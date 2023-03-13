@@ -67,13 +67,36 @@ public class Sniper {
         return false;
     }
 
+    public boolean shotMore(Sniper otherSniper)
+    {
+        if (this.getShootsFired() > otherSniper.getShootsFired())
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public int higherAccuracy(Sniper otherSniper)
+    {
+        if (this.percentHit() > otherSniper.percentHit())
+        {
+            return 1;
+        }
+        else if(this.percentHit() == otherSniper.percentHit())
+        {
+            return 0;
+        }
+        return -1;
+    }
+
 
     public String toString()
     {
         String toString = "The sniper's id is : " + this.id + "\n";
         toString = toString + "The sniper's code is : " + this.code + "\n";
-        toString = toString + "The amount of shots the Sniper fired is : " + shootsFired + "\n";
-        toString = toString + "The amount of shots the Sniper hit is : " + shootsOnTarget + "\n";
+        toString = toString + "The amount of shots the Sniper fired is : " + this.shootsFired + "\n";
+        toString = toString + "The amount of shots the Sniper hit is : " + this.shootsOnTarget + "\n";
+        toString = toString + "The sniper's percent hit is : " + this.percentHit() + "\n";
         return toString;
     }
 }
