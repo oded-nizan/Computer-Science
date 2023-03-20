@@ -1,3 +1,5 @@
+package com.classwork;
+
 public class Sniper {
 
     private int id;
@@ -94,8 +96,8 @@ public class Sniper {
     {
         String toString = "The sniper's id is : " + this.id + "\n";
         toString = toString + "The sniper's code is : " + this.code + "\n";
-        toString = toString + "The amount of shots the Sniper fired is : " + this.shootsFired + "\n";
-        toString = toString + "The amount of shots the Sniper hit is : " + this.shootsOnTarget + "\n";
+        toString = toString + "The amount of shots the com.classwork.Sniper fired is : " + this.shootsFired + "\n";
+        toString = toString + "The amount of shots the com.classwork.Sniper hit is : " + this.shootsOnTarget + "\n";
         toString = toString + "The sniper's percent hit is : " + this.percentHit() + "\n";
         return toString;
     }

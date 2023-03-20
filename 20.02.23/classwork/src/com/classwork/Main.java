@@ -1,3 +1,5 @@
+package com.classwork;
+
 import java.util.Random;
 import java.util.Scanner;
 
@@ -29,9 +31,8 @@ public class Main {
 
 	public static void printSniperArray(Sniper[] arr)
 		{
-			for(int i = 0; i < arr.length; i ++)
-			{
-				System.out.println(arr[i].toString());
+			for (Sniper sniper : arr) {
+				System.out.println(sniper.toString());
 			}
 		}
 
@@ -73,12 +74,10 @@ public class Main {
 	{
 		int sum = 0, m = 0;
 		double avg;
-		for (int i = 0; i < arr.length; i ++)
-		{
-			if (arr[i].getCode() == p)
-			{
-				sum += arr[i].percentHit();
-				m ++;
+		for (Sniper sniper : arr) {
+			if (sniper.getCode() == p) {
+				sum += sniper.percentHit();
+				m++;
 			}
 		}
 		if (m == 0)
@@ -92,11 +91,9 @@ public class Main {
 	public static void excellentPerUnit(Sniper[] arr, int p )
 	{
 		int m = 0;
-		for (int i = 0; i < arr.length; i ++)
-		{
-			if (arr[i].getCode() == p && arr[i].excellent())
-			{
-				m ++;
+		for (Sniper sniper : arr) {
+			if (sniper.getCode() == p && sniper.excellent()) {
+				m++;
 			}
 		}
 		System.out.println("The units number of excellent snipers is : " + m);
@@ -105,11 +102,9 @@ public class Main {
 	public static int excellentPerUnitI(Sniper[] arr, int p )
 	{
 		int m = 0;
-		for (int i = 0; i < arr.length; i ++)
-		{
-			if (arr[i].getCode() == p && arr[i].excellent())
-			{
-				m ++;
+		for (Sniper sniper : arr) {
+			if (sniper.getCode() == p && sniper.excellent()) {
+				m++;
 			}
 		}
 		return m;
@@ -165,6 +160,22 @@ public class Main {
 		print2DArrayDouble(a);
 	}
 
+	public static void sortByAccuracy(Sniper[] arr)
+	{
+		for (int i = 0; i < arr.length; i ++)
+		{
+			for (int j = 0; j < arr.length - 1; j ++)
+			{
+				if (arr[j].higherAccuracy(arr[j + 1]) == 1)
+				{
+					Sniper temp = arr[j];
+					arr[j] = arr[j + 1];
+					arr[j + 1] = temp;
+				}
+			}
+		}
+	}
+
 	public static Sniper highestPercentHit(Sniper[] arr)
 	{
 		Sniper result = arr[0];
@@ -203,6 +214,7 @@ public class Main {
 		System.out.println("5: prints the average shots hit percentage for all units");
 		System.out.println("6: prints the average shots hit percentage for all units in a sorted order");
 		System.out.println("7: prints the toString of the sniper with the highest avg");
+		System.out.println("8: sort by accuracy");
 		System.out.println("-1: exit the program");
 		System.out.println("Please enter your choice: ");
 	}
@@ -215,41 +227,27 @@ public class Main {
 			printMenu();
 			x = input.nextInt();
 			switch (x) {
-				case 1:
-					printSniperArray(arr);
-					break;
-
-				case 2:
-					bestSniper(arr);
-					break;
-
-				case 3:
+				case 1 -> printSniperArray(arr);
+				case 2 -> bestSniper(arr);
+				case 3 -> {
 					System.out.println("Enter desired unit's number: ");
 					int p = input.nextInt();
 					double z = unitsAVG(arr, p);
 					System.out.println("The unit's average is : " + z);
-					break;
-
-				case 4:
-					excellentAllUnits(arr);
-					break;
-
-				case 5:
-					avgAllUnits(arr);
-					break;
-
-				case 6:
-					sortedAvgAllUnits(arr);
-					break;
-
-				case 7:
+				}
+				case 4 -> excellentAllUnits(arr);
+				case 5 -> avgAllUnits(arr);
+				case 6 -> sortedAvgAllUnits(arr);
+				case 7 -> {
 					Sniper y = highestPercentHitNew(arr);
 					System.out.println(y.toString());
-					break;
-
-				case -1: System.out.println("You have exited this program");
-						 break;
-				default: System.out.println("You have entered invalid input");
+				}
+				case 8 -> {
+					sortByAccuracy(arr);
+					printSniperArray(arr);
+				}
+				case -1 -> System.out.println("You have exited this program");
+				default -> System.out.println("You have entered invalid input");
 			}
 		}
 	}
