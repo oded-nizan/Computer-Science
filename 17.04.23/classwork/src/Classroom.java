@@ -83,6 +83,28 @@ public class Classroom
         this.stuNum = this.stuNum - 1;
     }
 
+    public boolean isSpace()
+    {
+        if (this.stuNum <= this.arrStu.length)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public int failing()
+    {
+        int num = 0;
+        for (int i = 0; i < this.stuNum; i ++)
+        {
+            if (this.arrStu[i].getAvg() < 55)
+            {
+                num ++;
+            }
+        }
+        return num;
+    }
+
     public String toString()
     {
         StringBuilder toString = new StringBuilder("The name of this class is : " + this.getName() + "\n");
