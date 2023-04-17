@@ -41,6 +41,13 @@ public class Student
         this.grade2 = grade2;
     }
 
+    public int getAvg()
+    {
+        int sum = this.getGrade1() + this.getGrade2();
+        int avg = sum / 2;
+        return avg;
+    }
+
     public String toString()
     {
         String toString = "The name of the student is : " + this.getName() + "\n";

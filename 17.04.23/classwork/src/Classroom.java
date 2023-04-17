@@ -43,6 +43,46 @@ public class Classroom
         stuNum ++;
     }
 
+    public String bestStudent()
+    {
+        int max = 0;
+        int avg;
+        String name = "";
+
+        for (int i = 0; i < stuNum; i ++)
+        {
+            avg = this.arrStu[i].getAvg();
+            if (avg > max)
+            {
+                max = avg;
+                name = this.arrStu[i].getName();
+            }
+        }
+        return name;
+    }
+
+    public int nameToPlace(String name)
+    {
+        for (int i = 0; i < stuNum; i ++)
+        {
+            if (this.arrStu[i].getName() == name)
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public void remove(String name)
+    {
+        int place = nameToPlace(name);
+        for (int i = place + 1; i < this.arrStu.length; i ++)
+        {
+            this.arrStu[i-1] = this.arrStu[i];
+        }
+        this.stuNum = this.stuNum - 1;
+    }
+
     public String toString()
     {
         StringBuilder toString = new StringBuilder("The name of this class is : " + this.getName() + "\n");

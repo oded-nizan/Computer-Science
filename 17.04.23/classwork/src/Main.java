@@ -33,7 +33,7 @@ public class Main
         return arrGrades;
     }
 
-    public static void CreateClassroom(Classroom c, String[] arrNames, int[] arrGrades)
+    public static void fillClassroom(Classroom c, String[] arrNames, int[] arrGrades)
     {
         for (int i = 0; i < arrNames.length; i ++)
         {
@@ -46,7 +46,11 @@ public class Main
         String[] arrNames = {"yos", "Dos", "Mos"};
         int[] arrGrades = {12, 23, 34, 45, 56, 67};
         Classroom c1 = new Classroom("T4", 10);
-        CreateClassroom(c1, arrNames, arrGrades);
+        fillClassroom(c1, arrNames, arrGrades);
+        System.out.println(c1.toString());
+
+        System.out.println(c1.bestStudent());
+        c1.remove("yos");
         System.out.println(c1.toString());
     }
 }
