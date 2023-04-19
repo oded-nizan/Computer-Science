@@ -96,6 +96,76 @@ public class Date
         return false;
     }
 
+    private boolean isLeapInput(int year)
+    {
+        if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public int dif()
+    {
+        int days = 0;
+        for (int i = 1800; i < this.year; i ++)
+        {
+            if (isLeapInput(i))
+            {
+                days = days + 366;
+            }
+            else
+            {
+                days = days + 365;
+            }
+        }
+
+        for (int i = 1; i < this.month; i ++)
+        {
+            if (isLeap())
+            {
+                days = days + this.LeapYearMonth[i];
+            }
+            else
+            {
+                days = days + this.RegularYearMonth[i];
+            }
+        }
+        days = days + this.day - 1;
+        return days;
+    }
+
+    public int diffDates(Date d2)
+    {
+        int d1Days;
+        int d2Days;
+        d1Days = this.dif();
+        d2Days = d2.dif();
+        int end = Math.abs(d1Days - d2Days);
+        return end;
+    }
+
+    public int Compare(Date d2)
+    {
+        int d1Days;
+        int d2Days;
+        d1Days = this.dif();
+        d2Days = d2.dif();
+        if (d1Days > d2Days)
+        {
+            return 1;
+        }
+
+        else if (d2Days > d1Days)
+        {
+            return -1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+
     public String toString()
     {
         String toString = "The year of the date is : " + this.year + "\n";
