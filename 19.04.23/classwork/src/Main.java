@@ -27,19 +27,15 @@ public class Main
 
     public static String oldestPerson(Person[] personArr)
     {
-        String oldestName;
         int oldestIndex = 0;
         for (int i = 0; i < personArr.length  ; i ++)
         {
-            Date x = personArr[oldestIndex].getBirthDate();
-            Date y = personArr[i].getBirthDate();
-            if (x.Compare(y) == 1)
+            if (personArr[i].compare(personArr[oldestIndex]) == -1)
             {
                 oldestIndex = i;
             }
         }
-        oldestName = personArr[oldestIndex].getName();
-        return oldestName;
+        return personArr[oldestIndex].getName();
     }
     public static void main(String[] args)
     {

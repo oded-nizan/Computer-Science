@@ -36,6 +36,11 @@ public class Person
        this.birthDate = birthDate;
    }
 
+   public int compare(Person p1)
+   {
+       return this.getBirthDate().Compare(p1.getBirthDate());
+   }
+
     public String toString()
     {
         String toString = "The name of this person is : " + this.name + "\n";
