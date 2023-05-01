@@ -25,6 +25,19 @@ public class Main
        return PersonArr;
     }
 
+    public static void printPeople(Person[] personArr)
+    {
+        for (Person person : personArr) {
+            System.out.println(person.toString());
+        }
+    }
+    public static void printPeopleName(Person[] personArr)
+    {
+        for (Person person : personArr) {
+            System.out.println(person.getName());
+        }
+    }
+
     public static int oldestPersonPlace(Person[] personArr)
     {
         int oldestIndex = 0;
@@ -53,7 +66,7 @@ public class Main
 
     public static int oldestPersonPlaceByIndex(Person[] personArr, int p1, int p2)
     {
-        int oldestIndex = 0;
+        int oldestIndex = p1;
         for (int i = p1; i < p2  ; i ++)
         {
             if (personArr[i].compare(personArr[oldestIndex]) == -1)
@@ -66,7 +79,7 @@ public class Main
 
     public static int youngestPersonPlaceByIndex(Person[] personArr, int p1, int p2)
     {
-        int youngestIndex = 0;
+        int youngestIndex = p1;
         for (int i = p1; i < p2  ; i ++)
         {
             if (personArr[i].compare(personArr[youngestIndex]) == 1)
@@ -110,6 +123,21 @@ public class Main
         personArr[p1] = personArr[p2];
         personArr[p2] = PH;
     }
+
+    public static void sortPeople(Person[] personArr)
+    {
+        int p1 = 0, p2 = personArr.length, pmin, pmax;
+
+        while (p1 < p2)
+        {
+            pmin = youngestPersonPlaceByIndex(personArr, p1, p2);
+            pmax = oldestPersonPlaceByIndex(personArr, p1, p2);
+            Swap(personArr, p1, pmin);
+            Swap(personArr, p2-1, pmax);
+            p1++;
+            p2--;
+        }
+    }
     public static void main(String[] args)
     {
         MyDate d1 = new MyDate(2008, 9, 1);
@@ -123,6 +151,9 @@ public class Main
         Person p8 = new Person("Ros", 1789, 2, 12);
 
         Person[] people = new Person[]{p1, p2, p3, p4, p5, p6, p7, p8};
-        System.out.println(placeInRange(people, 2, 6, 1));
+        printPeopleName(people);
+        System.out.println("--------------------------------------------------------------");
+        sortPeople(people);
+        printPeopleName(people);
     }
 }
