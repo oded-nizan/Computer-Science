@@ -1,16 +1,16 @@
 public class Person
 {
     private String name;
-    private Date birthDate;
+    private MyDate birthDate;
 
     public Person(String name, int year, int month, int day)
     {
-        Date x = new Date(year, month, day);
+        MyDate x = new MyDate(year, month, day);
         this.setName(name);
         this.setBirthDate(x);
     }
 
-    public Person(String name, Date birthDate)
+    public Person(String name, MyDate birthDate)
     {
         this.setName(name);
         this.setBirthDate(birthDate);
@@ -26,12 +26,12 @@ public class Person
         this.name = name;
     }
 
-    public Date getBirthDate()
+    public MyDate getBirthDate()
     {
         return this.birthDate;
     }
 
-   public void setBirthDate(Date birthDate)
+   public void setBirthDate(MyDate birthDate)
    {
        this.birthDate = birthDate;
    }

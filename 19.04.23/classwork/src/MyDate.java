@@ -1,4 +1,4 @@
-public class Date
+public class MyDate
 {
     private int day;
     private int month;
@@ -7,7 +7,7 @@ public class Date
     private final int[] RegularYearMonth = {-1, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     private final int[] LeapYearMonth = {-1, 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
-    public Date(int year, int month, int day)
+    public MyDate(int year, int month, int day)
     {
         this.setYear(year);
         this.setMonth(month);
@@ -70,18 +70,11 @@ public class Date
         {
             if (this.isLeap())
             {
-                if (this.day >= 1 && this.day <= this.LeapYearMonth[this.month])
-                {
-                    return true;
-                }
-                return false;
+                return this.day >= 1 && this.day <= this.LeapYearMonth[this.month];
             }
             else
             {
-                if (this.day >= 1 && this.day <= this.RegularYearMonth[this.month])
-                {
-                    return true;
-                }
+                return this.day >= 1 && this.day <= this.RegularYearMonth[this.month];
             }
         }
         return false;
@@ -89,20 +82,12 @@ public class Date
 
     public boolean isLeap()
     {
-        if (this.year % 4 == 0 && this.year % 100 != 0 || this.year % 400 == 0)
-        {
-            return true;
-        }
-        return false;
+        return this.year % 4 == 0 && this.year % 100 != 0 || this.year % 400 == 0;
     }
 
     private boolean isLeapInput(int year)
     {
-        if (year % 4 == 0 && year % 100 != 0 || year % 400 == 0)
-        {
-            return true;
-        }
-        return false;
+        return year % 4 == 0 && year % 100 != 0 || year % 400 == 0;
     }
 
     public int dif()
@@ -135,35 +120,22 @@ public class Date
         return days;
     }
 
-    public int diffDates(Date d2)
+    public int diffDates(MyDate d2)
     {
         int d1Days;
         int d2Days;
         d1Days = this.dif();
         d2Days = d2.dif();
-        int end = Math.abs(d1Days - d2Days);
-        return end;
+        return Math.abs(d1Days - d2Days);
     }
 
-    public int Compare(Date d2)
+    public int Compare(MyDate d2)
     {
         int d1Days;
         int d2Days;
         d1Days = this.dif();
         d2Days = d2.dif();
-        if (d1Days > d2Days)
-        {
-            return 1;
-        }
-
-        else if (d2Days > d1Days)
-        {
-            return -1;
-        }
-        else
-        {
-            return 0;
-        }
+        return Integer.compare(d1Days, d2Days);
     }
 
     public String toString()
