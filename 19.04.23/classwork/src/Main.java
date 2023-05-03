@@ -1,25 +1,20 @@
-import java.util.Scanner;
+import java.util.Random;
 
 public class Main
 {
-
-    static final Scanner scanner = new Scanner(System.in);
+    static final Random random = new Random();
 
     public static Person[] inputPersonArr(int j)
     {
+        int id, day, month, year;
         Person[] PersonArr = new Person[j];
         for (int i = 0; i < PersonArr.length; i ++)
         {
-            System.out.println("Enter Person name : ");
-            String name = scanner.nextLine();
-            System.out.println("Enter Person birth year : ");
-            int year = scanner.nextInt();
-            System.out.println("Enter Person birth month : ");
-            int month = scanner.nextInt();
-            System.out.println("Enter Person birth day : ");
-            int day = scanner.nextInt();
-
-            Person x = new Person(name, year, month, day);
+            id =  random.nextInt(900000) + 100000;
+            year = random.nextInt(71) + 1950;
+            month = random.nextInt(12) + 1;
+            day = random.nextInt(28) + 1;
+            Person x = new Person(id, year, month, day);
             PersonArr[i] = x;
         }
        return PersonArr;
@@ -29,12 +24,6 @@ public class Main
     {
         for (Person person : personArr) {
             System.out.println(person.toString());
-        }
-    }
-    public static void printPeopleName(Person[] personArr)
-    {
-        for (Person person : personArr) {
-            System.out.println(person.getName());
         }
     }
 
@@ -104,19 +93,6 @@ public class Main
         return index;
     }
 
-    public static String oldestPersonName(Person[] personArr)
-    {
-        int oldestIndex = 0;
-        for (int i = 0; i < personArr.length  ; i ++)
-        {
-            if (personArr[i].compare(personArr[oldestIndex]) == -1)
-            {
-                oldestIndex = i;
-            }
-        }
-        return personArr[oldestIndex].getName();
-    }
-
     public static void Swap(Person[] personArr, int p1, int p2)
     {
         Person PH = personArr[p1];
@@ -138,22 +114,38 @@ public class Main
             p2--;
         }
     }
+
+    public static int amountThisMonth(Person[] personArr, int k)
+    {
+        int amount = 0;
+        for (int i = 0; i < personArr.length; i ++)
+        {
+            if (personArr[i].getMonth() == k)
+            {
+                amount ++;
+            }
+        }
+        return amount;
+    }
+
+    public static void amountPerMonth(Person[] personArr)
+    {
+        int max = 0, current, index = 0;
+        for (int i = 1; i < 13; i ++)
+        {
+            current = amountThisMonth(personArr, i);
+            if (current > max)
+            {
+                max = current;
+                index = i;
+            }
+            System.out.println("for the month " + i + " there are " + current + " people");
+        }
+        System.out.println("The month with the highest amount of people is : " + index);
+    }
     public static void main(String[] args)
     {
-        MyDate d1 = new MyDate(2008, 9, 1);
-        Person p1 = new Person("Roy", d1);
-        Person p2 = new Person("Oded", 2008, 3, 27);
-        Person p3 = new Person("Yoav", 2008, 2, 15);
-        Person p4 = new Person("Yuval", 2008, 10, 20);
-        Person p5 = new Person("Ilay", 2008, 2, 11);
-        Person p6 = new Person("Yos", 1986, 5, 5);
-        Person p7 = new Person("Dos", 2095, 7, 20);
-        Person p8 = new Person("Ros", 1789, 2, 12);
-
-        Person[] people = new Person[]{p1, p2, p3, p4, p5, p6, p7, p8};
-        printPeopleName(people);
-        System.out.println("--------------------------------------------------------------");
-        sortPeople(people);
-        printPeopleName(people);
+        Person[] people = inputPersonArr(1000);
+        amountPerMonth(people);
     }
 }

@@ -1,29 +1,44 @@
 public class Person
 {
-    private String name;
+    private int id;
     private MyDate birthDate;
 
-    public Person(String name, int year, int month, int day)
+    public Person(int id, int year, int month, int day)
     {
         MyDate x = new MyDate(year, month, day);
-        this.setName(name);
+        this.setId(id);
         this.setBirthDate(x);
     }
 
-    public Person(String name, MyDate birthDate)
+    public int getYear()
     {
-        this.setName(name);
+        return this.birthDate.getYear();
+    }
+
+    public int getMonth()
+    {
+        return this.birthDate.getMonth();
+    }
+
+    public int getDay()
+    {
+        return this.birthDate.getDay();
+    }
+
+    public Person(int id, MyDate birthDate)
+    {
+        this.setId(id);
         this.setBirthDate(birthDate);
     }
 
-    public String getName()
+    public int getId()
     {
-        return this.name;
+        return this.id;
     }
 
-    public void setName(String name)
+    public void setId(int id)
     {
-        this.name = name;
+        this.id = id;
     }
 
     public MyDate getBirthDate()
@@ -43,7 +58,7 @@ public class Person
 
     public String toString()
     {
-        String toString = "The name of this person is : " + this.name + "\n";
+        String toString = "The name of this person is : " + this.id + "\n";
         toString = toString + "The birth date of this person is : " + this.birthDate.toString();
         return toString;
     }
