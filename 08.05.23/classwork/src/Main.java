@@ -64,6 +64,43 @@ public class Main
         }
     }
 
+    public static int roadEnd(int k, int[] rooms)
+    {
+        int end = -1;
+        while (rooms[k] != -1)
+        {
+            k = rooms[k];
+        }
+        end = k;
+        return k;
+    }
+
+    public static int[] roadsEnds(int[] rooms, int[] teams)
+    {
+        int[] arr = new int[teams.length];
+        for (int i = 0; i < arr.length; i ++)
+        {
+            arr[i] = roadEnd(teams[i], rooms);
+        }
+        return arr;
+    }
+
+    public static boolean isRoadsDiff(int[] rooms, int[] teams)
+    {
+        int[] arr = roadsEnds(rooms, teams);
+        for (int i = 0; i < arr.length; i ++)
+        {
+            for (int j = 0; j < arr.length; j ++)
+            {
+                if (arr[i] == arr[j] && j != i)
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     public static void allRoadsLen(int[] rooms, int[] teams)
     {
         for (int i = 0; i < teams.length; i ++)
@@ -147,8 +184,8 @@ public class Main
     
     public static void main(String[] args)
     {
-        int[] rooms = new int[]{18, 17, -1, -1, 8, 0, 19, 0, 1, 0, 12, 0, 13, 2, 0, 0, 0, -1, 3, 10};
+        int[] rooms = new int[]{18, 17, -1, -1, 8, 0, 19, 0, 1, 0, 12, 0, 13, 2, 0, 0, -1, -1, 3, 10};
         int[] teams = new int[]{4, 6, 0, 16};
-        longestRoadsDis(rooms, teams);
+        System.out.println(isRoadsDiff(rooms, teams));
     }
 }
