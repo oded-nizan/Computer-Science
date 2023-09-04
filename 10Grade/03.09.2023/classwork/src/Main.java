@@ -46,6 +46,25 @@ public class Main {
         return l;
     }
 
+    public static Stack<Integer> getStack(Stack<Integer> s)
+    {
+        Stack<Integer> tempS1 = new Stack<Integer>();
+        Stack<Integer> tempS2 = new Stack<Integer>();
+
+        while (s.isEmpty() == false)
+        {
+            tempS1.push(s.pop())
+        }
+        while (tempS1.isEmpty() == false)
+        {
+            int x = tempS1.pop();
+            tempS2.push(x);
+            s.push(x);
+        }
+
+        return tempS2;
+    }
+
 
     public static void main(String[] args)
     {
