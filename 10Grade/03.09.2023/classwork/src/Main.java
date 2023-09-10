@@ -1,10 +1,10 @@
+@SuppressWarnings({"Convert2Diamond", "unused"})
 public class Main {
-    public static void Input(Stack<Integer> s)
+    public static void Input(Stack<Integer> s,int[] arr)
     {
         for(int i = 0; i < 6; i ++)
         {
-            int x = (int)(Math.random()*100+1);
-            s.push(x);
+            s.push(arr[i]);
         }
     }
 
@@ -13,14 +13,14 @@ public class Main {
 
         Stack<Integer> tempS = new Stack<Integer>();
 
-        while(s.isEmpty() == false)
+        while(!s.isEmpty())
         {
             int x = s.pop();
             System.out.println(x);
             tempS.push(x);
         }
 
-        while(tempS.isEmpty() == false)
+        while(!tempS.isEmpty())
         {
             s.push(tempS.pop());
         }
@@ -32,14 +32,14 @@ public class Main {
         Stack<Integer> tempS = new Stack<Integer>();
         tempS.push(l);
 
-        while(s.isEmpty() == false)
+        while(!s.isEmpty())
         {
             int x = s.pop();
             l = Math.max(l, x);
             tempS.push(x);
         }
 
-        while(tempS.isEmpty() == false)
+        while(!tempS.isEmpty())
         {
             s.push(tempS.pop());
         }
@@ -51,11 +51,11 @@ public class Main {
         Stack<Integer> tempS1 = new Stack<Integer>();
         Stack<Integer> tempS2 = new Stack<Integer>();
 
-        while (s.isEmpty() == false)
+        while (!s.isEmpty())
         {
-            tempS1.push(s.pop())
+            tempS1.push(s.pop());
         }
-        while (tempS1.isEmpty() == false)
+        while (!tempS1.isEmpty())
         {
             int x = tempS1.pop();
             tempS2.push(x);
@@ -69,7 +69,8 @@ public class Main {
     public static void main(String[] args)
     {
         Stack<Integer> s1 = new Stack<Integer> ();
-        Input(s1);
+        int[] arr = new int[]{1, 13, 58, 6834, 17};
+        Input(s1, arr);
         Output(s1);
         System.out.println("---------------------");
         System.out.println(largest(s1));
