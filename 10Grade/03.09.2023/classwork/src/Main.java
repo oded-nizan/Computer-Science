@@ -1,8 +1,8 @@
-@SuppressWarnings({"Convert2Diamond", "unused"})
+@SuppressWarnings({"Convert2Diamond", "unused", "ForLoopReplaceableByForEach"})
 public class Main {
     public static void Input(Stack<Integer> s,int[] arr)
     {
-        for(int i = 0; i < 6; i ++)
+        for(int i = 0; i < arr.length; i ++)
         {
             s.push(arr[i]);
         }
@@ -65,16 +65,59 @@ public class Main {
         return tempS2;
     }
 
+    public static void removeNumAll(Stack <Integer> s, int x)
+    {
+        Stack <Integer> temp = new Stack<Integer>();
+        while (!s.isEmpty())
+        {
+            int a = s.pop();
+            if (a != x)
+            {
+                temp.push(a);
+            }
+        }
+        while (!temp.isEmpty())
+        {
+            s.push(temp.pop());
+        }
+    }
+
+    public static void removeNumOnce(Stack <Integer> s, int x)
+    {
+        boolean ok = true;
+        Stack <Integer> temp = new Stack<Integer>();
+        while (!s.isEmpty())
+        {
+            int a = s.pop();
+            if (a != x || !ok)
+            {
+                temp.push(a);
+            }
+            else
+            {
+                ok = false;
+            }
+        }
+        while (!temp.isEmpty())
+        {
+            s.push(temp.pop());
+        }
+    }
+
+
+
 
     public static void main(String[] args)
     {
         Stack<Integer> s1 = new Stack<Integer> ();
-        int[] arr = new int[]{1, 13, 58, 6834, 17};
+        int[] arr = new int[]{1, 13, 58, 1, 17, 2, 15, 1};
         Input(s1, arr);
         Output(s1);
         System.out.println("---------------------");
-        System.out.println(largest(s1));
+        removeNumOnce(s1, 1);
+        Output(s1);
         System.out.println("---------------------");
+        removeNumAll(s1, 1);
         Output(s1);
     }
 }
