@@ -26,7 +26,7 @@ public class Main {
         }
     }
 
-    public static int largest(Stack<Integer> s)
+    public static int getMax(Stack<Integer> s)
     {
         int l = s.pop();
         Stack<Integer> tempS = new Stack<Integer>();
@@ -109,9 +109,9 @@ public class Main {
         Stack <Integer> temp = new Stack<Integer>();
         while (!s.isEmpty())
         {
-            int max = largest(s);
-            removeNumOnce(s, max);
+            int max = getMax(s);
             temp.push(max);
+            removeNumOnce(s, max);
         }
         while (!temp.isEmpty())
         {
@@ -119,15 +119,35 @@ public class Main {
         }
     }
 
+    public static boolean sumInStack(Stack<Integer> s, int x)
+    {
+        int a, b;
+        Stack<Integer> temp1 = getStack(s);
+        while (!temp1.isEmpty())
+        {
+            a = temp1.pop();
+            Stack<Integer> temp2 = getStack(s);
+            removeNumOnce(temp2, a);
+            while (!temp2.isEmpty())
+            {
+                b = temp2.pop();
+                if (a+b == x)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
 
     public static void main(String[] args)
     {
         Stack<Integer> s1 = new Stack<Integer> ();
-        int[] arr = new int[]{1, 13, 58, 1, 17, 2, 15, 1};
+        int[] arr = new int[]{1, 13, 58, 17, 2, 15};
         Input(s1, arr);
         Output(s1);
         System.out.println("---------------------");
-        sortStack(s1);
-        Output(s1);
+        System.out.println(sumInStack(s1, 30));
     }
 }
