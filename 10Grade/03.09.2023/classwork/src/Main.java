@@ -104,7 +104,20 @@ public class Main {
         }
     }
 
-
+    public static void sortStack(Stack<Integer> s)
+    {
+        Stack <Integer> temp = new Stack<Integer>();
+        while (!s.isEmpty())
+        {
+            int max = largest(s);
+            removeNumOnce(s, max);
+            temp.push(max);
+        }
+        while (!temp.isEmpty())
+        {
+            s.push(temp.pop());
+        }
+    }
 
 
     public static void main(String[] args)
@@ -114,10 +127,7 @@ public class Main {
         Input(s1, arr);
         Output(s1);
         System.out.println("---------------------");
-        removeNumOnce(s1, 1);
-        Output(s1);
-        System.out.println("---------------------");
-        removeNumAll(s1, 1);
+        sortStack(s1);
         Output(s1);
     }
 }
