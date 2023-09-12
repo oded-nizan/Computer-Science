@@ -140,6 +140,17 @@ public class Main {
         return false;
     }
 
+    public static int lastNum(Stack<Integer> s)
+    {
+        int x;
+        Stack<Integer> temp = new Stack<Integer>();
+        while(!s.isEmpty())
+        {
+            temp.push(s.pop());
+        }
+        x = temp.pop();
+    }
+
 
     public static void main(String[] args)
     {
