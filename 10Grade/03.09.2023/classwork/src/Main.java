@@ -149,6 +149,24 @@ public class Main {
             temp.push(s.pop());
         }
         x = temp.pop();
+        while (!temp.isEmpty())
+        {
+            s.push(temp.pop());
+        }
+        return x;
+    }
+
+    public static Stack<Integer> sumOpposites(Stack<Integer> s)
+    {
+        int a,b;
+        Stack<Integer> temp = new Stack<>();
+        while (!s.isEmpty())
+        {
+            a = s.pop();
+            b = lastNum(s);
+            temp.push(a+b);
+        }
+        return temp;
     }
 
 
