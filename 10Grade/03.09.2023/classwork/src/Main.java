@@ -169,14 +169,49 @@ public class Main {
         return temp;
     }
 
+    public static boolean canYouSum(Stack<Integer> s, int x)
+    {
+        Stack<Integer> temp = getStack(s);
+        int sum = 0;
+        int a;
+
+        while (!temp.isEmpty())
+        {
+            a = temp.pop();
+            sum += a;
+
+            if (x == sum)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean isThereSum(Stack<Integer> s)
+    {
+        int x;
+        while (!s.isEmpty())
+        {
+            x = s.pop();
+
+            if (canYouSum(s, x))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
 
     public static void main(String[] args)
     {
         Stack<Integer> s1 = new Stack<Integer> ();
-        int[] arr = new int[]{1, 13, 58, 17, 2, 15};
+        int[] arr = new int[]{1, 13, 58, 17, 2, 15, 34};
         Input(s1, arr);
         Output(s1);
         System.out.println("---------------------");
-        System.out.println(sumInStack(s1, 30));
+        System.out.println(isThereSum(s1));
     }
 }
