@@ -203,6 +203,27 @@ public class Main {
         return false;
     }
 
+    public static boolean sumBeforeNum(Stack<Integer> s)
+    {
+        Stack<Integer> temp1 = getStack(s);
+        Stack<Integer> temp2 = getStack(s);
+        int sum = 0;
+        int a, x;
+        temp2.pop();
+
+        while (!temp1.isEmpty())
+        {
+            a = temp1.pop();
+            sum += a;
+            x = temp2.pop();
+            if (sum == x)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
 
     public static void main(String[] args)
