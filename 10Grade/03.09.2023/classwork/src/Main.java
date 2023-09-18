@@ -224,6 +224,62 @@ public class Main {
         return false;
     }
 
+    public static void inputSt(Stack<TwoItems> st)
+    {
+        TwoItems x;
+        x = new TwoItems(10, 15);
+        st.push(x);
+        x = new TwoItems(46, 60);
+        st.push(x);
+        x = new TwoItems(12, 25);
+        st.push(x);
+    }
+
+    public static Stack<TwoItems> getStackT(Stack<TwoItems> st)
+    {
+        Stack<TwoItems> tempSt1 = new Stack<TwoItems>();
+        Stack<TwoItems> tempSt2 = new Stack<TwoItems>();
+        TwoItems x;
+
+        while (!st.isEmpty())
+        {
+            tempSt1.push(st.pop());
+        }
+        while (!tempSt1.isEmpty())
+        {
+            x = tempSt1.pop();
+            tempSt2.push(x);
+            st.push(x);
+        }
+
+        return tempSt2;
+    }
+
+    public static boolean notInRange(Stack<TwoItems> st, int x)
+    {
+        Stack<TwoItems> tempSt = getStackT(st);
+        TwoItems s;
+        while (!tempSt.isEmpty())
+        {
+            s = tempSt.pop();
+            if (s.getNumA() < x && x < s.getNumB())
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static void printOutOfRange(Stack<TwoItems> st)
+    {
+        for (int i = 1; i < 101; i ++)
+        {
+            if (notInRange(st, i))
+            {
+                System.out.println(i);
+            }
+        }
+    }
 
 
     public static void main(String[] args)
@@ -231,8 +287,9 @@ public class Main {
         Stack<Integer> s1 = new Stack<Integer> ();
         int[] arr = new int[]{1, 13, 58, 17, 2, 15, 34};
         Input(s1, arr);
-        Output(s1);
-        System.out.println("---------------------");
-        System.out.println(isThereSum(s1));
+
+        Stack<TwoItems> st = new Stack<TwoItems>();
+        inputSt(st);
+        printOutOfRange(st);
     }
 }
