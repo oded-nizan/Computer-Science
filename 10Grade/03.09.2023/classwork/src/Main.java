@@ -229,10 +229,28 @@ public class Main {
         TwoItems x;
         x = new TwoItems(10, 15);
         st.push(x);
-        x = new TwoItems(46, 60);
+        x = new TwoItems(70, 73);
         st.push(x);
-        x = new TwoItems(12, 25);
+        x = new TwoItems(12, 30);
         st.push(x);
+        x = new TwoItems(80, 95);
+        st.push(x);
+    }
+
+    public static void OutputSt(Stack<TwoItems> st)
+    {
+        Stack<TwoItems> tempSt =new Stack<TwoItems>();
+
+        while(!st.isEmpty())
+        {
+            TwoItems x = st.pop();
+            tempSt.push(x);
+            System.out.println(x.toString());
+        }
+        while (!tempSt.isEmpty())
+        {
+            st.push(tempSt.pop());
+        }
     }
 
     public static Stack<TwoItems> getStackT(Stack<TwoItems> st)
@@ -262,7 +280,7 @@ public class Main {
         while (!tempSt.isEmpty())
         {
             s = tempSt.pop();
-            if (s.getNumA() < x && x < s.getNumB())
+            if (s.getNumA() <= x && x <= s.getNumB())
             {
                 return false;
             }
@@ -281,6 +299,41 @@ public class Main {
         }
     }
 
+    public static Stack<TwoItems> strangeRanges(Stack<TwoItems> st)
+    {
+        Stack<TwoItems> sto = new Stack<TwoItems> ();
+        boolean first = true;
+        TwoItems x;
+        int a = 0;
+        for (int i = 1; i < 101; i ++)
+        {
+            if (notInRange(st, i))
+            {
+                if (first)
+                {
+                    a = i;
+                    first = false;
+                }
+            }
+            else
+            {
+                first = true;
+                if (a >= 1)
+                {
+                    x = new TwoItems(a, i-1);
+                    sto.push(x);
+                    a = 0;
+                }
+            }
+        }
+        if (!first)
+        {
+            x = new TwoItems(a, 100);
+            sto.push(x);
+        }
+        return sto;
+    }
+
 
     public static void main(String[] args)
     {
@@ -290,6 +343,7 @@ public class Main {
 
         Stack<TwoItems> st = new Stack<TwoItems>();
         inputSt(st);
-        printOutOfRange(st);
+        Stack<TwoItems> sto = strangeRanges(st);
+        OutputSt(sto);
     }
 }
