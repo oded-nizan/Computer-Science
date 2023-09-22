@@ -224,15 +224,146 @@ public class Main {
         return false;
     }
 
+    public static int firstTimesInRow(Stack<Integer> s, int a)
+    {
+        int num = 0, x;
+        while (!s.isEmpty())
+        {
+            x = s.pop();
+            if (x == a)
+            {
+                num ++;
+            }
+            else
+            {
+                s.push(x);
+                return num;
+            }
+        }
+        return num;
+    }
+
+    public static boolean strikes(Stack<Integer> s)
+    {
+        int a, b;
+        a = firstTimesInRow(s, s.pop());
+        while (!s.isEmpty())
+        {
+            b = firstTimesInRow(s, s.pop());
+            if (b >= a)
+            {
+                return false;
+            }
+            a = b;
+        }
+        return true;
+    }
+
+    public static Stack<Integer> fusion(Stack<Integer> s1, Stack<Integer> s2)
+    {
+        Stack<Integer> result = new Stack<Integer>();
+        int a = 0, b = 0, sum = 0;
+        while (!s1.isEmpty())
+        {
+            a += s1.pop();
+            b = s2.pop();
+            sum = a + b;
+            if (sum < 10)
+            {
+                result.push(sum);
+                a = 0;
+            }
+            else
+            {
+                sum -= 10;
+                a = 1;
+                result.push(sum);
+            }
+
+        }
+        if (s2.isEmpty())
+        {
+            return result;
+        }
+        else
+        {
+            while (!s2.isEmpty())
+            {
+                a += s2.pop();
+                sum = a;
+                if (sum < 10)
+                {
+                    result.push(sum);
+                    a = 0;
+                }
+                else
+                {
+                    sum -= 10;
+                    result.push(sum);
+                    a = 1;
+                }
+                result.push(s2.pop());
+            }
+        }
+        return result;
+    }
+
+    public static void InputC(Stack<Character> s, char[] arr)
+    {
+        for(int i = 0; i < arr.length; i ++)
+        {
+            s.push(arr[i]);
+        }
+    }
+
+    public static void OutputC(Stack<Character> s)
+    {
+
+        Stack<Character> tempS = new Stack<Character>();
+
+        while(!s.isEmpty())
+        {
+            char x = s.pop();
+            System.out.println(x);
+            tempS.push(x);
+        }
+
+        while(!tempS.isEmpty())
+        {
+            s.push(tempS.pop());
+        }
+    }
+
+    public static Stack<Character> largestChar(Stack<Character> s)
+    {
+        Stack<Character> s1 = new Stack<Character>();
+        char n, max = s.pop();
+        while (!s.isEmpty())
+        {
+            n = s.pop();
+            while (n != '#' && !s.isEmpty())
+            {
+                if (n > max)
+                {
+                    max = n;
+                }
+                n = s.pop();
+            }
+            s1.push(max);
+             max = 'a';
+        }
+        return s1;
+    }
 
 
     public static void main(String[] args)
     {
-        Stack<Integer> s1 = new Stack<Integer> ();
-        int[] arr = new int[]{1, 13, 58, 17, 2, 15, 34};
-        Input(s1, arr);
-        Output(s1);
-        System.out.println("---------------------");
-        System.out.println(isThereSum(s1));
+        Stack<Character> s1 = new Stack<Character>();
+        char[] arr = new char[]{'a', 't', '#', 'r', 'z', 'b', 'e', '#', 'm'};
+        InputC(s1, arr);
+        OutputC(s1);
+        System.out.println("------------------");
+        Stack<Character> s2 = largestChar(s1);
+        OutputC(s2);
     }
 }
