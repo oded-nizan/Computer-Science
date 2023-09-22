@@ -224,6 +224,7 @@ public class Main {
         return false;
     }
 
+<<<<<<< HEAD
     public static int firstTimesInRow(Stack<Integer> s, int a)
     {
         int num = 0, x;
@@ -255,10 +256,73 @@ public class Main {
                 return false;
             }
             a = b;
+=======
+    public static void inputSt(Stack<TwoItems> st)
+    {
+        TwoItems x;
+        x = new TwoItems(10, 15);
+        st.push(x);
+        x = new TwoItems(70, 73);
+        st.push(x);
+        x = new TwoItems(12, 30);
+        st.push(x);
+        x = new TwoItems(80, 95);
+        st.push(x);
+    }
+
+    public static void OutputSt(Stack<TwoItems> st)
+    {
+        Stack<TwoItems> tempSt =new Stack<TwoItems>();
+
+        while(!st.isEmpty())
+        {
+            TwoItems x = st.pop();
+            tempSt.push(x);
+            System.out.println(x.toString());
+        }
+        while (!tempSt.isEmpty())
+        {
+            st.push(tempSt.pop());
+        }
+    }
+
+    public static Stack<TwoItems> getStackT(Stack<TwoItems> st)
+    {
+        Stack<TwoItems> tempSt1 = new Stack<TwoItems>();
+        Stack<TwoItems> tempSt2 = new Stack<TwoItems>();
+        TwoItems x;
+
+        while (!st.isEmpty())
+        {
+            tempSt1.push(st.pop());
+        }
+        while (!tempSt1.isEmpty())
+        {
+            x = tempSt1.pop();
+            tempSt2.push(x);
+            st.push(x);
+        }
+
+        return tempSt2;
+    }
+
+    public static boolean notInRange(Stack<TwoItems> st, int x)
+    {
+        Stack<TwoItems> tempSt = getStackT(st);
+        TwoItems s;
+        while (!tempSt.isEmpty())
+        {
+            s = tempSt.pop();
+            if (s.getNumA() <= x && x <= s.getNumB())
+            {
+                return false;
+            }
+>>>>>>> 3c3d03e2ba1e522aed595f4d216b09c2a5b04fca
         }
         return true;
     }
 
+<<<<<<< HEAD
     public static Stack<Integer> fusion(Stack<Integer> s1, Stack<Integer> s2)
     {
         Stack<Integer> result = new Stack<Integer>();
@@ -353,11 +417,58 @@ public class Main {
              max = 'a';
         }
         return s1;
+=======
+    public static void printOutOfRange(Stack<TwoItems> st)
+    {
+        for (int i = 1; i < 101; i ++)
+        {
+            if (notInRange(st, i))
+            {
+                System.out.println(i);
+            }
+        }
+    }
+
+    public static Stack<TwoItems> strangeRanges(Stack<TwoItems> st)
+    {
+        Stack<TwoItems> sto = new Stack<TwoItems> ();
+        boolean first = true;
+        TwoItems x;
+        int a = 0;
+        for (int i = 1; i < 101; i ++)
+        {
+            if (notInRange(st, i))
+            {
+                if (first)
+                {
+                    a = i;
+                    first = false;
+                }
+            }
+            else
+            {
+                first = true;
+                if (a >= 1)
+                {
+                    x = new TwoItems(a, i-1);
+                    sto.push(x);
+                    a = 0;
+                }
+            }
+        }
+        if (!first)
+        {
+            x = new TwoItems(a, 100);
+            sto.push(x);
+        }
+        return sto;
+>>>>>>> 3c3d03e2ba1e522aed595f4d216b09c2a5b04fca
     }
 
 
     public static void main(String[] args)
     {
+<<<<<<< HEAD
         Stack<Character> s1 = new Stack<Character>();
         char[] arr = new char[]{'a', 't', '#', 'r', 'z', 'b', 'e', '#', 'm'};
         InputC(s1, arr);
@@ -365,5 +476,15 @@ public class Main {
         System.out.println("------------------");
         Stack<Character> s2 = largestChar(s1);
         OutputC(s2);
+=======
+        Stack<Integer> s1 = new Stack<Integer> ();
+        int[] arr = new int[]{1, 13, 58, 17, 2, 15, 34};
+        Input(s1, arr);
+
+        Stack<TwoItems> st = new Stack<TwoItems>();
+        inputSt(st);
+        Stack<TwoItems> sto = strangeRanges(st);
+        OutputSt(sto);
+>>>>>>> 3c3d03e2ba1e522aed595f4d216b09c2a5b04fca
     }
 }
