@@ -224,7 +224,7 @@ public class Main {
         return false;
     }
 
-<<<<<<< HEAD
+
     public static int firstTimesInRow(Stack<Integer> s, int a)
     {
         int num = 0, x;
@@ -256,7 +256,8 @@ public class Main {
                 return false;
             }
             a = b;
-=======
+
+
     public static void inputSt(Stack<TwoItems> st)
     {
         TwoItems x;
@@ -317,12 +318,12 @@ public class Main {
             {
                 return false;
             }
->>>>>>> 3c3d03e2ba1e522aed595f4d216b09c2a5b04fca
         }
         return true;
     }
 
-<<<<<<< HEAD
+
+
     public static Stack<Integer> fusion(Stack<Integer> s1, Stack<Integer> s2)
     {
         Stack<Integer> result = new Stack<Integer>();
@@ -372,6 +373,7 @@ public class Main {
         return result;
     }
 
+
     public static void InputC(Stack<Character> s, char[] arr)
     {
         for(int i = 0; i < arr.length; i ++)
@@ -379,6 +381,7 @@ public class Main {
             s.push(arr[i]);
         }
     }
+
 
     public static void OutputC(Stack<Character> s)
     {
@@ -417,7 +420,8 @@ public class Main {
              max = 'a';
         }
         return s1;
-=======
+
+
     public static void printOutOfRange(Stack<TwoItems> st)
     {
         for (int i = 1; i < 101; i ++)
@@ -428,6 +432,7 @@ public class Main {
             }
         }
     }
+
 
     public static Stack<TwoItems> strangeRanges(Stack<TwoItems> st)
     {
@@ -462,13 +467,11 @@ public class Main {
             sto.push(x);
         }
         return sto;
->>>>>>> 3c3d03e2ba1e522aed595f4d216b09c2a5b04fca
     }
 
 
     public static void main(String[] args)
     {
-<<<<<<< HEAD
         Stack<Character> s1 = new Stack<Character>();
         char[] arr = new char[]{'a', 't', '#', 'r', 'z', 'b', 'e', '#', 'm'};
         InputC(s1, arr);
@@ -476,15 +479,5 @@ public class Main {
         System.out.println("------------------");
         Stack<Character> s2 = largestChar(s1);
         OutputC(s2);
-=======
-        Stack<Integer> s1 = new Stack<Integer> ();
-        int[] arr = new int[]{1, 13, 58, 17, 2, 15, 34};
-        Input(s1, arr);
-
-        Stack<TwoItems> st = new Stack<TwoItems>();
-        inputSt(st);
-        Stack<TwoItems> sto = strangeRanges(st);
-        OutputSt(sto);
->>>>>>> 3c3d03e2ba1e522aed595f4d216b09c2a5b04fca
     }
 }
