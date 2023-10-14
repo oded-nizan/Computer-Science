@@ -1,5 +1,4 @@
 
-@SuppressWarnings("ALL")
 public class Main {
     public static void Input(Stack<Integer> s,int[] arr)
     {
