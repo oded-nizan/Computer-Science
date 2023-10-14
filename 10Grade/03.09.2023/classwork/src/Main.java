@@ -1,4 +1,5 @@
-@SuppressWarnings({"Convert2Diamond", "unused", "ForLoopReplaceableByForEach"})
+
+@SuppressWarnings("ALL")
 public class Main {
     public static void Input(Stack<Integer> s,int[] arr)
     {
