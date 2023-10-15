@@ -1,10 +1,10 @@
 
+@SuppressWarnings({"unused", "Convert2Diamond"})
 public class Main {
     public static void Input(Stack<Integer> s,int[] arr)
     {
-        for(int i = 0; i < arr.length; i ++)
-        {
-            s.push(arr[i]);
+        for (int j : arr) {
+            s.push(j);
         }
     }
 
@@ -244,24 +244,23 @@ public class Main {
         return num;
     }
 
-    public static boolean strikes(Stack<Integer> s)
-    {
+    public static boolean strikes(Stack<Integer> s) {
         int a, b;
         a = firstTimesInRow(s, s.pop());
-        while (!s.isEmpty())
-        {
+        while (!s.isEmpty()) {
             b = firstTimesInRow(s, s.pop());
-            if (b >= a)
-            {
+            if (b >= a) {
                 return false;
             }
             a = b;
-
+        }
+        return true;
+    }
 
     public static void inputSt(Stack<TwoItems> st)
     {
         TwoItems x;
-        x = new TwoItems(10, 15);
+        x = new TwoItems(10,15);
         st.push(x);
         x = new TwoItems(70, 73);
         st.push(x);
@@ -327,7 +326,7 @@ public class Main {
     public static Stack<Integer> fusion(Stack<Integer> s1, Stack<Integer> s2)
     {
         Stack<Integer> result = new Stack<Integer>();
-        int a = 0, b = 0, sum = 0;
+        int a = 0, b, sum;
         while (!s1.isEmpty())
         {
             a += s1.pop();
@@ -376,9 +375,8 @@ public class Main {
 
     public static void InputC(Stack<Character> s, char[] arr)
     {
-        for(int i = 0; i < arr.length; i ++)
-        {
-            s.push(arr[i]);
+        for (char c : arr) {
+            s.push(c);
         }
     }
 
@@ -402,24 +400,22 @@ public class Main {
     }
 
     public static Stack<Character> largestChar(Stack<Character> s)
-    {
-        Stack<Character> s1 = new Stack<Character>();
-        char n, max = s.pop();
-        while (!s.isEmpty())
         {
-            n = s.pop();
-            while (n != '#' && !s.isEmpty())
-            {
-                if (n > max)
-                {
-                    max = n;
-                }
+            Stack<Character> s1 = new Stack<Character>();
+            char n, max = s.pop();
+            while (!s.isEmpty()) {
                 n = s.pop();
+                while (n != '#' && !s.isEmpty()) {
+                    if (n > max) {
+                        max = n;
+                    }
+                    n = s.pop();
+                }
+                s1.push(max);
+                max = 'a';
             }
-            s1.push(max);
-             max = 'a';
+            return s1;
         }
-        return s1;
 
 
     public static void printOutOfRange(Stack<TwoItems> st)
