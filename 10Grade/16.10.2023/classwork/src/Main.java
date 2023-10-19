@@ -75,13 +75,9 @@ public class Main
 
     public static int numInNumber(int n, int m)
     {
-        if (n == 0 || m == 0)
+        if (n < m)
         {
             return 0;
-        }
-        else if (n == m)
-        {
-            return 1;
         }
         else
         {
@@ -95,18 +91,106 @@ public class Main
         {
             return 1;
         }
-        else if (m == 1)
-        {
-            return n;
-        }
         else
         {
             return n * power(n, m-1);
         }
     }
 
+    public static int numOfDigits(int n)
+    {
+        if (n == 0)
+        {
+            return 0;
+        }
+        else
+        {
+            return 1 + numOfDigits(n / 10);
+        }
+    }
+
+    public static int numOfEvenDigits(int n)
+    {
+        if (n == 0)
+        {
+            return 0;
+        }
+        else if (n % 2 == 0)
+        {
+            return 1 + numOfEvenDigits(n / 10);
+        }
+        else
+        {
+            return numOfEvenDigits(n / 10);
+        }
+    }
+
+    public static int sumOfEvenDigits(int n)
+    {
+        if (n == 0)
+        {
+            return 0;
+        }
+        else if (n % 2 == 0)
+        {
+            return n%10 +sumOfEvenDigits(n / 10);
+        }
+        else
+        {
+            return sumOfEvenDigits(n / 10);
+        }
+    }
+
+    public static int lastDigit(int n)
+    {
+        if (n == 0)
+        {
+            return 0;
+        }
+        else if (n < 10)
+        {
+            return n;
+        }
+        else
+        {
+            return lastDigit(n / 10);
+        }
+    }
+
+    public static int sumOfEvenNoOddDigits(int n)
+    {
+        if (n == 0)
+        {
+            return 0;
+        }
+        else if (n % 2 == 0)
+        {
+            return n%10 + sumOfEvenNoOddDigits(n / 10);
+        }
+        else
+        {
+            return sumOfEvenNoOddDigits(n / 10) - n%10;
+        }
+    }
+
+    public static int digitInNumber(int n, int m)
+    {
+        if (n%10 == m)
+        {
+            return 1;
+        }
+        else if (n == 0)
+        {
+            return 0;
+        }
+        else
+        {
+            return digitInNumber(n/10, m);
+        }
+    }
+
     public static void main(String[] args)
     {
-        System.out.println(power(2, 6));
+        System.out.println(lastDigit(588988));
     }
 }
