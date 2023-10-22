@@ -189,8 +189,75 @@ public class Main
         }
     }
 
+    public static boolean digitInNumberb(int n, int m)
+    {
+        if (n == 0)
+        {
+            return false;
+        }
+        else
+        {
+            return n%10==m || digitInNumberb(n/10, m);
+        }
+    }
+
+    public static boolean allDigitsEven(int n)
+    {
+        if (n == 0)
+        {
+            return true;
+        }
+        else if (n % 2 == 0)
+        {
+            return allDigitsEven(n / 10);
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public static boolean atleastOneDigitEven(int n)
+    {
+        if (n == 0)
+        {
+            return false;
+        }
+        else if (n % 2 == 0)
+        {
+            return true;
+        }
+        else
+        {
+            return atleastOneDigitEven(n / 10);
+        }
+    }
+
+    public static boolean isPrime(int n, int i)
+    {
+        if (i == n)
+        {
+            return true;
+        }
+        else if (n%i == 0)
+        {
+            return false;
+        }
+        else
+        {
+            return isPrime(n, i+1);
+        }
+    }
+
+    public static boolean isPrime(int n)
+    {
+        return isPrime(n, 2);
+    }
+
+
+
     public static void main(String[] args)
     {
-        System.out.println(lastDigit(588988));
+        System.out.println(isPrime(100));
     }
 }
