@@ -297,10 +297,42 @@ public class Main
         }
     }
 
+    public static int numDividers(int n, int i)
+    {
+        if (i == n)
+        {
+            return 0;
+        }
+        else if (n%i == 0)
+        {
+            return 1 + numDividers(n, i+1);
+        }
+        else
+        {
+            return numDividers(n, i+1);
+        }
+    }
+
+    public static int numDividers(int n)
+    {
+        return numDividers(n, 2);
+    }
+
+    public static int largestDigit(int n)
+    {
+        if (n < 10)
+        {
+            return n;
+        }
+        else
+        {
+            return Math.max(n%10, largestDigit(n/10));
+        }
+    }
 
 
     public static void main(String[] args)
     {
-        System.out.println(isDescendingOrder(8757));
+        System.out.println(largestDigit(5340));
     }
 }
