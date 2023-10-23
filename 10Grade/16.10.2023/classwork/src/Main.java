@@ -1,3 +1,4 @@
+@SuppressWarnings("unused")
 public class Main
 {
 
@@ -254,10 +255,52 @@ public class Main
         return isPrime(n, 2);
     }
 
+    public static boolean allDigitsEqual(int n)
+    {
+        if (n < 10)
+        {
+            return true;
+        }
+        else
+        {
+            int x = n % 10;
+            int y = (n/10) % 10;
+            if (x != y)
+            {
+                return false;
+            }
+            else
+            {
+                return allDigitsEqual(n/10);
+            }
+        }
+    }
+
+    public static boolean isDescendingOrder(int n)
+    {
+        if (n < 10)
+        {
+            return true;
+        }
+        else
+        {
+            int x = n % 10;
+            int y = (n/10) % 10;
+            if (x >= y)
+            {
+                return false;
+            }
+            else
+            {
+                return isDescendingOrder(n/10);
+            }
+        }
+    }
+
 
 
     public static void main(String[] args)
     {
-        System.out.println(isPrime(100));
+        System.out.println(isDescendingOrder(8757));
     }
 }
