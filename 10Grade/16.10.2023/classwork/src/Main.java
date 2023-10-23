@@ -330,9 +330,83 @@ public class Main
         }
     }
 
+    public static int numDigitInNumber(int n, int m)
+    {
+        if (n%10 == m)
+        {
+            return 1 + numDigitInNumber(n/10, m);
+        }
+        else if (n == 0)
+        {
+            return 0;
+        }
+        else
+        {
+            return numDigitInNumber(n/10, m);
+        }
+    }
+
+    public static int indexDigitInNumber(int n, int m)
+    {
+        if (n%10 == m)
+        {
+            return 1;
+        }
+        else if (n == 0)
+        {
+            return 0;
+        }
+        else
+        {
+            return 1 + indexDigitInNumber(n/10, m);
+        }
+    }
+
+    public static boolean leftDigitEqualRight(int n, int m)
+    {
+        if (n/10 == m)
+        {
+            return true;
+        }
+        else if (n == 0)
+        {
+            return false;
+        }
+        else
+        {
+            return leftDigitEqualRight(n/10, m);
+        }
+    }
+
+    public static boolean leftDigitEqualRight(int n)
+    {
+        return leftDigitEqualRight(n, n%10);
+    }
+
+    public static int sumDividers(int n, int i)
+    {
+        if (i == n)
+        {
+            return 0;
+        }
+        else if (n%i == 0)
+        {
+            return i + sumDividers(n, i+1);
+        }
+        else
+        {
+            return sumDividers(n, i+1);
+        }
+    }
+
+    public static int sumDividers(int n)
+    {
+        return sumDividers(n, 2);
+    }
+
 
     public static void main(String[] args)
     {
-        System.out.println(largestDigit(5340));
+        System.out.println(indexDigitInNumber(697892, 7));
     }
 }
