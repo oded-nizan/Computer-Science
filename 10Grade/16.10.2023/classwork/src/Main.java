@@ -346,20 +346,24 @@ public class Main
         }
     }
 
-    public static int indexDigitInNumber(int n, int m)
+    public static int indexDigitInNumber(int n, int m, int p)
     {
-        if (n%10 == m)
+        if (n == 0)
         {
-            return 1;
+            return -1;
         }
-        else if (n == 0)
+        else if (n%10 == m)
         {
-            return 0;
+            return p;
         }
         else
         {
-            return 1 + indexDigitInNumber(n/10, m);
+            return  indexDigitInNumber(n/10, m, p+1);
         }
+    }
+    public static int indexDigitInNumber(int n, int m)
+    {
+        return indexDigitInNumber(n, m, 1);
     }
 
     public static boolean leftDigitEqualRight(int n, int m)
@@ -401,12 +405,27 @@ public class Main
 
     public static int sumDividers(int n)
     {
-        return sumDividers(n, 2);
+        return sumDividers(n, 1);
+    }
+
+
+    public static void printArray(int[] arr, int i)
+    {
+        if( i < arr.length)
+        {
+            System.out.println(arr[i]);
+            printArray(arr, i+1);
+        }
+    }
+    public static void printArray(int[] arr)
+    {
+        printArray(arr, 0);
     }
 
 
     public static void main(String[] args)
     {
-        System.out.println(indexDigitInNumber(697892, 7));
+        int[] arr = new int[]{1, 2, 3, 4, 5};
+        printArray(arr);
     }
 }
