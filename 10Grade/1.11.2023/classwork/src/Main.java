@@ -231,11 +231,18 @@ public class Main
         return true;
     }
 
+    public static void sumSeries(Node<Integer> list)
+    {
+
+    }
+
     public static void main(String[] args)
     {
         int [] a = {10, 20, 41, 30, 40, 40, 11, 30, 41, 20, 10};
+        int[] arr = {8, 3, 5, -1, 20, 50, 60, -1, 8, 1, 9, 5, 3, -1};
         Node<Integer> l = buildList( a);
         printList(l);
-        System.out.println(palindrome(l));
+        Node<Integer> lst = buildList(arr);
+
     }
 }
