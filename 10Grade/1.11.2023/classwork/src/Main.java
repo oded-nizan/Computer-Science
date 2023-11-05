@@ -91,16 +91,14 @@ public class Main
 
     public static Node<Integer> cleanList(Node<Integer> list)
     {
-        Node<Integer> p = new Node<Integer>(null, list);
-        Node<Integer> p2 = p;
-        int num;
-        while(p2.getNext() != null)
+        Node<Integer> p = list;
+        while(p != null)
         {
-            num = p2.getNext().getValue();
-            p2 = p2.getNext();
-            p2 = deleteNum(p2.getNext(), num);
+            int x = p.getValue();
+            p.setNext(deleteNum(p.getNext(), x));
+            p = p.getNext();
         }
-        return p.getNext();
+        return list;
     }
 
     public static void printLargeNums(Node<Integer> list)
@@ -132,6 +130,80 @@ public class Main
             }
             p = p.getNext();
         }
+    }
+
+    public static Node<Integer> fibonaci()
+    {
+        Node<Integer> l = new Node<>(0);
+        Node<Integer> p = l;
+        int x = 0, y = 1, z;
+        for (int i = 0; i < 20; i ++)
+        {
+            p.setNext(new Node<Integer>(x));
+            p = p.getNext();
+            z = x + y;
+            x = y;
+            y = z;
+        }
+        return l.getNext();
+    }
+
+    public static boolean risingSeries(Node<Integer> list)
+    {
+        Node<Integer> p = list;
+        int x;
+        if (p.getNext() != null)
+        {
+            x = p.getValue() - p.getNext().getValue();
+        }
+        else
+        {
+            return false;
+        }
+        while(p.getNext() != null)
+        {
+            if (p.getValue() - p.getNext().getValue() != x)
+            {
+                return false;
+            }
+            p = p.getNext();
+        }
+        return true;
+    }
+
+    public static boolean listInListOrder(Node<Integer> listA, Node<Integer> listB)
+    {
+        Node<Integer> p1 = listA;
+        Node<Integer> p2 = listB;
+        while (p1 != null && p2 != null)
+        {
+            if (p1.getValue() != p2.getValue())
+            {
+                return false;
+            }
+            p1 = p1.getNext();
+            p2 = p2.getNext();
+        }
+        if (p2 != null)
+        {
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean listInList(Node<Integer> listA, Node<Integer> listB)
+    {
+        Node<Integer> p1 = listA;
+        Node<Integer> p2 = listB;
+        while (p1!= null && p2!= null)
+        {
+            if (listInListOrder(p1, p2))
+            {
+                return true;
+            }
+            p1 = p1.getNext();
+        }
+        return false;
     }
 
     public static void main(String[] args)
