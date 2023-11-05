@@ -194,10 +194,9 @@ public class Main
     public static boolean listInList(Node<Integer> listA, Node<Integer> listB)
     {
         Node<Integer> p1 = listA;
-        Node<Integer> p2 = listB;
-        while (p1!= null && p2!= null)
+        while (p1!= null)
         {
-            if (listInListOrder(p1, p2))
+            if (listInListOrder(p1, listB))
             {
                 return true;
             }
@@ -206,12 +205,37 @@ public class Main
         return false;
     }
 
+    public static Node<Integer> getPrevious(Node<Integer> list, Node<Integer> p)
+    {
+        Node<Integer> p1 = list;
+        while(p1.getNext() != p)
+        {
+            p1 = p1.getNext();
+        }
+        return p1;
+    }
+
+    public static boolean palindrome(Node<Integer> list)
+    {
+        Node<Integer> p1 = list;
+        Node<Integer> p2 = getPrevious(list, null);
+        while (p1.getNext() != null)
+        {
+            if (p1.getValue() != p2.getValue())
+            {
+                return false;
+            }
+            p1 = p1.getNext();
+            p2 = getPrevious(list, p2);
+        }
+        return true;
+    }
+
     public static void main(String[] args)
     {
-        int [] a = {10, 20, 41, 30 , 50, 41, 50, 60, 10};
+        int [] a = {10, 20, 41, 30, 40, 40, 11, 30, 41, 20, 10};
         Node<Integer> l = buildList( a);
         printList(l);
-        Node<Integer> l2 = cleanList(l);
-        printList(l2);
+        System.out.println(palindrome(l));
     }
 }
