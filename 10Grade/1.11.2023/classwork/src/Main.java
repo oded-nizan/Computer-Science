@@ -219,7 +219,7 @@ public class Main
     {
         Node<Integer> p1 = list;
         Node<Integer> p2 = getPrevious(list, null);
-        while (p1.getNext() != null)
+        while (p1 != p2 && p1.getNext() != p2)
         {
             if (p1.getValue() != p2.getValue())
             {
