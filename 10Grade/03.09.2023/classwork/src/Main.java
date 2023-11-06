@@ -374,7 +374,7 @@ public class Main {
 
 
     public static void InputC(Stack<Character> s, char[] arr)
-    {
+    {gi
         for (char c : arr) {
             s.push(c);
         }
