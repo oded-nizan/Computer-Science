@@ -455,10 +455,95 @@ public class Main
             return maAv2(num/10,s+num%10,n+1);
     }
 
+    public static int evenNumArray(int[] arr, int i)
+    {
+        if (i >= arr.length)
+        {
+            return 0;
+        }
+        else if (i < arr.length && arr[i]%2 == 0)
+        {
+            return 1 + evenNumArray(arr, i+1);
+        }
+        else
+        {
+            return evenNumArray(arr, i+1);
+        }
+    }
+    public static int evenNumArray(int[] arr)
+    {
+        return evenNumArray(arr, 0);
+    }
+
+    public static boolean allEvenArray(int[] arr, int i)
+    {
+        if (i < arr.length)
+        {
+            if (arr[i]%2 != 0)
+            {
+                return false;
+            }
+            else
+            {
+                return allEvenArray(arr, i+1);
+            }
+        }
+        return true;
+    }
+    public static boolean allEvenArray(int[] arr)
+    {
+        return allEvenArray(arr, 0);
+    }
+
+    public static boolean palindrome(int[] arr, int i)
+    {
+        if (i < arr.length)
+        {
+            if (arr[i] != arr[arr.length-(i+1)])
+            {
+                return false;
+            }
+            else
+            {
+                return palindrome(arr, i+1);
+            }
+        }
+        return true;
+    }
+    public static boolean palindrome(int[] arr)
+    {
+        return palindrome(arr, 0);
+    }
+
+    public static boolean arrayInArray(int[] arr, int[] arrB, int i)
+    {
+        if (i == arrB.length)
+        {
+            return true;
+        }
+        else if (i == arr.length)
+        {
+            return false;
+        }
+        else if (arrB[i] != arrB[i])
+        {
+            return false;
+        }
+        else
+        {
+            return arrayInArray(arr, arrB, i+1);
+        }
+    }
+
+    public static boolean arrayInArray(int[] arr, int[] arrB)
+    {
+        return arrayInArray(arr, arrB, 0);
+    }
+
 
     public static void main(String[] args)
     {
-        int[] arr = new int[]{1, 2, 3, 4, 5};
-        System.out.println(sumArray(arr));
+        int[] arr = new int[]{10, 2, 2, 10};
+        System.out.println(palindrome(arr));
     }
 }
