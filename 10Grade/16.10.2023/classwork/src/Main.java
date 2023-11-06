@@ -1,4 +1,4 @@
-@SuppressWarnings("unused")
+
 public class Main
 {
 
@@ -422,10 +422,43 @@ public class Main
         printArray(arr, 0);
     }
 
+    public static int sumArray(int[] arr, int i)
+    {
+        if( i < arr.length - 1)
+        {
+            return arr[i] + sumArray(arr, i+1);
+        }
+        else
+        {
+            return arr[i];
+        }
+    }
+    public static int sumArray(int[] arr)
+    {
+        return sumArray(arr, 0);
+    }
+
+    public static double maAv1(int num, int k)
+    {
+        double sum;
+        if (k == 1)
+            return num;
+        sum = maAv1(num / 10, k-1) * (k-1);
+        return ((num % 10) + sum) / k;
+    }
+
+    public static double maAv2(int num, int s, int n)
+    {
+        if(num==0)
+            return s/n;
+        else
+            return maAv2(num/10,s+num%10,n+1);
+    }
+
 
     public static void main(String[] args)
     {
         int[] arr = new int[]{1, 2, 3, 4, 5};
-        printArray(arr);
+        System.out.println(sumArray(arr));
     }
 }
