@@ -361,6 +361,8 @@ public class Main
         return l2.getNext();
     }
 
+
+
     public static void main(String[] args)
     {
         int [] a = {10, 20, 41, 30};
