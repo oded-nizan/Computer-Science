@@ -231,9 +231,39 @@ public class Main
         return true;
     }
 
-    public static void sumSeries(Node<Integer> list)
+    public static int NumSum(Node<Integer> lst)
     {
-
+        Node<Integer> p=lst;
+        if(p==null)
+        {
+            return 0;
+        }
+        return p.getValue()+NumSum(p.getNext());
+    }
+    public static int EvenNum(Node<Integer> lst)
+    {
+        Node<Integer> p=lst;
+        if(p==null)
+        {
+            return 0;
+        }
+        else if(p.getValue()%2==0)
+        {
+            return 1+EvenNum(p.getNext());
+        }
+        return EvenNum(p.getNext());
+    }
+    public static Node<Integer> FlipList(Node<Integer> lst)
+    {
+        Node<Integer> p=lst;
+        Node<Integer> h=new Node<Integer>(p.getValue());
+        p=p.getNext();
+        while(p!=null)
+        {
+            h = new Node<Integer>(p.getValue(), h);
+            p=p.getNext();
+        }
+        return h;
     }
 
     public static void main(String[] args)

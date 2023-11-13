@@ -540,6 +540,27 @@ public class Main
         return arrayInArray(arr, arrB, 0);
     }
 
+    public static boolean isPower(int a, int b, int p)
+    {
+        if(Math.pow(a,p)>b)
+        {
+            return false;
+        }
+        if(Math.pow(a,p)==b)
+        {
+            return true;
+        }
+        else
+        {
+            return isPower(a,b,p+1);
+        }
+    }
+
+
+    public static boolean isPower(int a, int b) {
+        return isPower(a, b, 1);
+    }
+
 
     public static void main(String[] args)
     {
