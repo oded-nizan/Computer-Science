@@ -242,7 +242,8 @@ public class Main
         int[] arr = {8, 3, 5, -1, 20, 50, 60, -1, 8, 1, 9, 5, 3, -1};
         Node<Integer> l = buildList( a);
         printList(l);
-        Node<Integer> lst = buildList(arr);
+        Node<Integer> r = cleanList(l);
+        printList(r);
 
     }
 }

@@ -374,7 +374,7 @@ public class Main {
 
 
     public static void InputC(Stack<Character> s, char[] arr)
-    {gi
+    {
         for (char c : arr) {
             s.push(c);
         }
@@ -465,15 +465,52 @@ public class Main {
         return sto;
     }
 
+    public static int sumStack(Stack<Integer> s)
+    {
+        Stack<Integer> temp = new Stack<Integer>();
+        int sum = 0;
+        while (!s.isEmpty())
+        {
+            int x = s.pop();
+            sum += x;
+            temp.push(x);
+        }
+        while (!temp.isEmpty())
+        {
+            s.push(temp.pop());
+        }
+        return sum;
+    }
+
+    public static boolean circus(Stack<Integer> s)
+    {
+        Stack<Integer> temp = new Stack<Integer>();
+        int sum;
+        while (!s.isEmpty())
+        {
+            int x = s.pop();
+            temp.push(x);
+            sum = sumStack(s);
+            if (x > sum && !s.isEmpty())
+            {
+                return false;
+            }
+        }
+        while (!temp.isEmpty())
+        {
+            s.push(temp.pop());
+        }
+        return true;
+    }
+
 
     public static void main(String[] args)
     {
-        Stack<Character> s1 = new Stack<Character>();
-        char[] arr = new char[]{'a', 't', '#', 'r', 'z', 'b', 'e', '#', 'm'};
-        InputC(s1, arr);
-        OutputC(s1);
-        System.out.println("------------------");
-        Stack<Character> s2 = largestChar(s1);
-        OutputC(s2);
+        Stack<Integer> s1 = new Stack<Integer>();
+        int[] arr = new int[]{10, 5, 7, 2, 1};
+        Input(s1, arr);
+        Output(s1);
+        System.out.println(circus(s1));
+
     }
 }
