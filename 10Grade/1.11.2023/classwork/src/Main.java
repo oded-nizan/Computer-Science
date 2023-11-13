@@ -266,20 +266,13 @@ public class Main
         return h;
     }
 
-    public static Node<Integer> deleteLast(Node<Integer> lst)
-    {
-        Node<Integer> p = getPrevious(lst, null);
-        p = getPrevious(lst, p);
-        p.setNext(null);
-        return lst;
-    }
-
     public static Node<Integer> cyclicMove(Node<Integer> lst)
     {
-        Node<Integer> p = new Node<Integer>(null);
-        p.setNext(lst);
-        p.setValue(getPrevious(lst, null).getValue());
-        deleteLast(p);
+        Node<Integer> p = new Node<Integer>(null, lst);
+        p.setValue(getPrevious(p, null).getValue());
+        Node<Integer> tmp = getPrevious(p, null);
+        tmp = getPrevious(p, tmp);
+        tmp.setNext(null);
         return p;
     }
 
@@ -318,7 +311,11 @@ public class Main
         int num = listLength(p);
         for (int i = 0; i < num; i ++)
         {
-            if (equalLists(p, p1))
+            boolean equal = equalLists(p1, p);
+            System.out.println(equal);
+            System.out.println("l: " + p);
+            System.out.println("l2: " + p1);
+            if (equal)
             {
                 return true;
             }
@@ -327,13 +324,48 @@ public class Main
         return false;
     }
 
+    public static Node<Integer> buildNum(int num)
+    {
+        Node<Integer> build = new Node<Integer>(null);
+        while (num > 10)
+        {
+            int x = num%10;
+            build.setValue(x);
+            build = build.getNext();
+        }
+        build.setValue(num);
+        build = build.getNext();
+        build.setValue(-9);
+        return build;
+    }
+
+    public static Node<Integer> buildDigits(Node<Integer> l1)
+    {
+        Node<Integer> p1 = l1;
+        Node<Integer> l2 = new Node<Integer>(-1);
+        Node<Integer> p2 = l2;
+        while (p1 != null)
+        {
+            int a = p1.getValue();
+            while (a > 0)
+            {
+                int x = a % 10;
+                p2.setNext(new Node<Integer>(x));
+                p2 = p2.getNext();
+                a = a / 10;
+            }
+            p2.setNext(new Node<Integer>(-9));
+            p2 = p2.getNext();
+            p1 = p1.getNext();
+        }
+        return l2.getNext();
+    }
+
     public static void main(String[] args)
     {
-        int [] a = {10, 20, 41, 30, 40, 40, 11, 30, 41, 20, 10};
-        Node<Integer> l = buildList( a);
-        printList(l);
-        Node<Integer> p = cyclicMove(l);
-        printList(p);
-        System.out.println(equalCyclicLists(p, l));
+        int [] a = {10, 20, 41, 30};
+        Node<Integer> l = buildList(a);
+        Node<Integer> l2 = cyclicMove(l);
+        System.out.println(equalCyclicLists(l, l2));
     }
 }
