@@ -503,6 +503,26 @@ public class Main {
         return true;
     }
 
+    public static Stack<Integer> notInBlock(Stack<Integer> s)
+    {
+        Stack<Integer> p = new Stack<Integer>();
+        while(!s.isEmpty())
+        {
+            int x = s.pop();
+            int m = 1;
+            while (!s.isEmpty() && s.top() == x)
+            {
+                x = s.pop();
+                m++;
+            }
+            if (m == 1)
+            {
+                p.push(x);
+            }
+        }
+        return p;
+    }
+
 
     public static void main(String[] args)
     {
