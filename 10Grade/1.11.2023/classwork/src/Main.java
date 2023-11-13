@@ -266,14 +266,74 @@ public class Main
         return h;
     }
 
+    public static Node<Integer> deleteLast(Node<Integer> lst)
+    {
+        Node<Integer> p = getPrevious(lst, null);
+        p = getPrevious(lst, p);
+        p.setNext(null);
+        return lst;
+    }
+
+    public static Node<Integer> cyclicMove(Node<Integer> lst)
+    {
+        Node<Integer> p = new Node<Integer>(null);
+        p.setNext(lst);
+        p.setValue(getPrevious(lst, null).getValue());
+        deleteLast(p);
+        return p;
+    }
+
+    public static int listLength(Node<Integer> lst)
+    {
+        int num = 0;
+        Node<Integer> p = lst;
+        while (p != null)
+        {
+            num ++;
+            p = p.getNext();
+        }
+        return num;
+    }
+
+    public static boolean equalLists(Node<Integer> lstA, Node<Integer> lstB)
+    {
+        Node<Integer> p = lstA;
+        Node<Integer> p1 = lstB;
+        while (p != null)
+        {
+            if (p.getValue() != p1.getValue())
+            {
+                return false;
+            }
+            p = p.getNext();
+            p1 = p1.getNext();
+        }
+        return true;
+    }
+
+    public static boolean equalCyclicLists(Node<Integer> lstA, Node<Integer> lstB)
+    {
+        Node<Integer> p = lstA;
+        Node<Integer> p1 = lstB;
+        int num = listLength(p);
+        for (int i = 0; i < num; i ++)
+        {
+            if (equalLists(p, p1))
+            {
+                return true;
+            }
+            p1 = cyclicMove(p1);
+        }
+        return false;
+    }
+
     public static void main(String[] args)
     {
         int [] a = {10, 20, 41, 30, 40, 40, 11, 30, 41, 20, 10};
-        int[] arr = {8, 3, 5, -1, 20, 50, 60, -1, 8, 1, 9, 5, 3, -1};
         Node<Integer> l = buildList( a);
         printList(l);
-        Node<Integer> r = cleanList(l);
-        printList(r);
-
+        Node<Integer> p = cyclicMove(l);
+        printList(p);
+        System.out.println(equalCyclicLists(p, l));
     }
 }
