@@ -36,7 +36,7 @@ mov bx, 3
 sub bx, 1
 mul bl
 
-mov ac, 0abh
+mov ax, 0abh
 mov bx, 0cdh
 add ax, bx
 
