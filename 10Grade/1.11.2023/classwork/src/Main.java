@@ -1,3 +1,4 @@
+@SuppressWarnings({"Convert2Diamond", "unused"})
 public class Main
 {
 
@@ -266,14 +267,20 @@ public class Main
         return h;
     }
 
+
     public static Node<Integer> cyclicMove(Node<Integer> lst)
     {
-        Node<Integer> p = new Node<Integer>(null, lst);
-        p.setValue(getPrevious(p, null).getValue());
-        Node<Integer> tmp = getPrevious(p, null);
-        tmp = getPrevious(p, tmp);
-        tmp.setNext(null);
-        return p;
+        Node<Integer> last = getPrevious(lst, null);
+        Node<Integer> result = new Node<Integer> (last.getValue());
+        result = result.getNext();
+        Node<Integer> p = lst;
+        while (p.getNext() != null)
+        {
+            result.setNext(new Node<>(p.getValue()));
+            p = p.getNext();
+            result = result.getNext();
+        }
+        return result;
     }
 
     public static int listLength(Node<Integer> lst)
@@ -332,6 +339,7 @@ public class Main
             int x = num%10;
             build.setValue(x);
             build = build.getNext();
+            num /= 10;
         }
         build.setValue(num);
         build = build.getNext();
