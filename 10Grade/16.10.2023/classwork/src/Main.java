@@ -420,8 +420,37 @@ public class Main {
         }
     }
 
+    public static int maxInArray(int[] arr, int left, int right) {
+        int middle, max1, max2;
+        if (left == right) {
+            return arr[left];
+        } else {
+            middle = (right + left) / 2;
+            max1 = maxInArray(arr, left, middle);
+            max2 = maxInArray(arr, middle + 1, right);
+            return Math.max(max1, max2);
+        }
+    }
+
+    public static boolean commonNumInArray(int[] arr, int[] brr, int i1, int i2) {
+        if (arr[i1] == brr[i2]) {
+            return true;
+        } else if (arr.length > i1 + 1) {
+            return commonNumInArray(arr, brr, i1 + 1, i2);
+        } else if (brr.length > i2 + 1) {
+            return commonNumInArray(arr, brr, 0, i2 + 1);
+        } else {
+            return false;
+        }
+    }
+
+    public static boolean commonNumInArray(int[] arr, int[] brr) {
+        return commonNumInArray(arr, brr, 0, 0);
+    }
+
     public static void main(String[] args) {
         int[] arr = new int[] { 10, 2, 2, 10 };
-        System.out.println(palindrome(arr));
+        int[] brr = new int[] { 12, 12, 14, 10 };
+        System.out.println(commonNumInArray(arr, brr));
     }
 }
