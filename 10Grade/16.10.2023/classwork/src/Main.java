@@ -464,8 +464,18 @@ public class Main {
         return equalSumInArray(arr, n, 0, 1);
     }
 
-    public static boolean differentDivisionInTwo(int[] arr) {
+    public static boolean differentDivisionInTwo(int[] arr, int i) {
+        if (arr[i] % 2 == arr[i + 1] % 2) {
+            return false;
+        } else if (arr.length > i + 2) {
+            return differentDivisionInTwo(arr, i + 1);
+        } else {
+            return true;
+        }
+    }
 
+    public static boolean differentDivisionInTwo(int[] arr) {
+        return differentDivisionInTwo(arr, 0);
     }
 
     public static void main(String[] args) {
