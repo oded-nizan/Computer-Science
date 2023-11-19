@@ -448,6 +448,26 @@ public class Main {
         return commonNumInArray(arr, brr, 0, 0);
     }
 
+    public static boolean equalSumInArray(int[] arr, int n, int i, int j) {
+        if (arr[i] + arr[j] == n && j != i) {
+            return true;
+        } else if (arr.length > j + 1) {
+            return equalSumInArray(arr, n, i, j + 1);
+        } else if (arr.length > i + 1) {
+            return equalSumInArray(arr, n, i + 1, j);
+        } else {
+            return false;
+        }
+    }
+
+    public static boolean equalSumInArray(int[] arr, int n) {
+        return equalSumInArray(arr, n, 0, 1);
+    }
+
+    public static boolean differentDivisionInTwo(int[] arr) {
+
+    }
+
     public static void main(String[] args) {
         int[] arr = new int[] { 10, 2, 2, 10 };
         int[] brr = new int[] { 12, 12, 14, 10 };
