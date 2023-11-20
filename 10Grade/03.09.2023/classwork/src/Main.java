@@ -1,5 +1,3 @@
-
-@SuppressWarnings({ "unused", "Convert2Diamond" })
 public class Main {
     public static void Input(Stack<Integer> s, int[] arr) {
         for (int j : arr) {
