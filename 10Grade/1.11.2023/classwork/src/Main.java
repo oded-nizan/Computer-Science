@@ -216,14 +216,9 @@ public class Main {
 
     public static Node<Integer> cyclicMove(Node<Integer> lst) {
         Node<Integer> last = getPrevious(lst, null);
-        Node<Integer> result = new Node<Integer>(last.getValue());
-        result = result.getNext();
-        Node<Integer> p = lst;
-        while (p.getNext() != null) {
-            result.setNext(new Node<>(p.getValue()));
-            p = p.getNext();
-            result = result.getNext();
-        }
+        Node<Integer> result = new Node<Integer>(last.getValue(), lst);
+        last = getPrevious(lst, last);
+        last.setNext(null);
         return result;
     }
 
@@ -300,28 +295,60 @@ public class Main {
         return l2.getNext();
     }
 
-    public static void outOfBounds(Node<TwoItems> lst)
-    {
+    public static void outOfBound(Node<TwoItems> lst) {
         Node<TwoItems> p;
         boolean ok;
         TwoItems x;
-        for (int i = 1; i =< 100; i ++) 
-        {
+        for (int i = 1; i <= 100; i++) {
             p = lst;
             ok = true;
-            while (p != null) 
-            {
+            while (p != null) {
                 x = p.getValue();
-                if (i >= x.getNumA() && i <= x.getNumB()) 
-                {
+                if (i >= x.getNumA() && i <= x.getNumB()) {
                     ok = false;
                 }
             }
-            if (ok) 
-            {
+            if (ok) {
                 System.out.println(i);
             }
         }
+    }
+
+    public static boolean inTwoItems(TwoItems x, int n) {
+        if (n >= x.getNumA() && n <= x.getNumB()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static boolean inRange(Node<TwoItems> lst, int n) {
+        Node<TwoItems> p = lst;
+        while (p != null) {
+            if (inTwoItems(p.getValue(), n)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static void outOfBounds(Node<TwoItems> lst) {
+        for (int i = 1; i <= 100; i++) {
+            if (!inRange(lst, i)) {
+                System.out.println(i);
+            }
+        }
+    }
+
+    public static Node<Integer> inBounds(Node<TwoItems> lst) {
+        Node<Integer> p = new Node<Integer>(null, null);
+        for (int i = 1; i <= 100; i++) {
+            if (inRange(lst, i)) {
+                p.setNext(new Node<Integer>(i));
+                p = p.getNext();
+            }
+        }
+        return p.getNext();
     }
 
     public static void main(String[] args) {
