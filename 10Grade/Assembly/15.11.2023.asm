@@ -51,14 +51,46 @@ start:
 ;mul bl
 
 ;((8 - 5) * 3) + (5 + 2)
-mov ax, 8
-sub ax, 5
-mov bx, 3
-mul bl
-mov cx, 5
-add cx, 2
-add ax, cx
+;mov ax, 8
+;sub ax, 5
+;mov bx, 3
+;mul bl
+;mov cx, 5
+;add cx, 2
+;add ax, cx
 
+
+;mov ax, 5h
+;mov bx, 7h
+;mov cx, 2
+;add ax, cx
+;inc ax
+;dec bx
+
+;mov dx, 8
+;mov ax, 9h
+;sub dx, 4
+;mul dx
+;mov cx, dx
+;inc cx
+;sub cx, 1
+;mov bx,cx
+
+;mov cx, 3
+;add cx, 5
+;mov bx, cx
+;inc bx
+;mov ax, bx
+;mov dx, cx
+
+mov ax, 7
+inc ax
+mov bx, 5
+mov dx, 0
+mov cx, 5
+mul cx
+mov cx, ax
+sub cx, 6
 ; ------------------------
 
 exit:
