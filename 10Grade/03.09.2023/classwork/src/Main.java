@@ -1,62 +1,52 @@
 
-@SuppressWarnings({"unused", "Convert2Diamond"})
+@SuppressWarnings({ "unused", "Convert2Diamond" })
 public class Main {
-    public static void Input(Stack<Integer> s,int[] arr)
-    {
+    public static void Input(Stack<Integer> s, int[] arr) {
         for (int j : arr) {
             s.push(j);
         }
     }
 
-    public static void Output(Stack<Integer> s)
-    {
+    public static void Output(Stack<Integer> s) {
 
         Stack<Integer> tempS = new Stack<Integer>();
 
-        while(!s.isEmpty())
-        {
+        while (!s.isEmpty()) {
             int x = s.pop();
             System.out.println(x);
             tempS.push(x);
         }
 
-        while(!tempS.isEmpty())
-        {
+        while (!tempS.isEmpty()) {
             s.push(tempS.pop());
         }
     }
 
-    public static int getMax(Stack<Integer> s)
-    {
+    public static int getMax(Stack<Integer> s) {
         int l = s.pop();
         Stack<Integer> tempS = new Stack<Integer>();
         tempS.push(l);
 
-        while(!s.isEmpty())
-        {
+        while (!s.isEmpty()) {
             int x = s.pop();
             l = Math.max(l, x);
             tempS.push(x);
         }
 
-        while(!tempS.isEmpty())
-        {
+        while (!tempS.isEmpty()) {
             s.push(tempS.pop());
         }
         return l;
     }
 
-    public static Stack<Integer> getStack(Stack<Integer> s)
-    {
+    public static Stack<Integer> getStack(Stack<Integer> s) {
         Stack<Integer> tempS1 = new Stack<Integer>();
         Stack<Integer> tempS2 = new Stack<Integer>();
 
-        while (!s.isEmpty())
-        {
+        while (!s.isEmpty()) {
             tempS1.push(s.pop());
         }
-        while (!tempS1.isEmpty())
-        {
+        while (!tempS1.isEmpty()) {
             int x = tempS1.pop();
             tempS2.push(x);
             s.push(x);
@@ -65,74 +55,57 @@ public class Main {
         return tempS2;
     }
 
-    public static void removeNumAll(Stack <Integer> s, int x)
-    {
-        Stack <Integer> temp = new Stack<Integer>();
-        while (!s.isEmpty())
-        {
+    public static void removeNumAll(Stack<Integer> s, int x) {
+        Stack<Integer> temp = new Stack<Integer>();
+        while (!s.isEmpty()) {
             int a = s.pop();
-            if (a != x)
-            {
+            if (a != x) {
                 temp.push(a);
             }
         }
-        while (!temp.isEmpty())
-        {
+        while (!temp.isEmpty()) {
             s.push(temp.pop());
         }
     }
 
-    public static void removeNumOnce(Stack <Integer> s, int x)
-    {
+    public static void removeNumOnce(Stack<Integer> s, int x) {
         boolean ok = true;
-        Stack <Integer> temp = new Stack<Integer>();
-        while (!s.isEmpty())
-        {
+        Stack<Integer> temp = new Stack<Integer>();
+        while (!s.isEmpty()) {
             int a = s.pop();
-            if (a != x || !ok)
-            {
+            if (a != x || !ok) {
                 temp.push(a);
-            }
-            else
-            {
+            } else {
                 ok = false;
             }
         }
-        while (!temp.isEmpty())
-        {
+        while (!temp.isEmpty()) {
             s.push(temp.pop());
         }
     }
 
-    public static void sortStack(Stack<Integer> s)
-    {
-        Stack <Integer> temp = new Stack<Integer>();
-        while (!s.isEmpty())
-        {
+    public static void sortStack(Stack<Integer> s) {
+        Stack<Integer> temp = new Stack<Integer>();
+        while (!s.isEmpty()) {
             int max = getMax(s);
             temp.push(max);
             removeNumOnce(s, max);
         }
-        while (!temp.isEmpty())
-        {
+        while (!temp.isEmpty()) {
             s.push(temp.pop());
         }
     }
 
-    public static boolean sumInStack(Stack<Integer> s, int x)
-    {
+    public static boolean sumInStack(Stack<Integer> s, int x) {
         int a, b;
         Stack<Integer> temp1 = getStack(s);
-        while (!temp1.isEmpty())
-        {
+        while (!temp1.isEmpty()) {
             a = temp1.pop();
             Stack<Integer> temp2 = getStack(s);
             removeNumOnce(temp2, a);
-            while (!temp2.isEmpty())
-            {
+            while (!temp2.isEmpty()) {
                 b = temp2.pop();
-                if (a+b == x)
-                {
+                if (a + b == x) {
                     return true;
                 }
             }
@@ -140,103 +113,83 @@ public class Main {
         return false;
     }
 
-    public static int lastNum(Stack<Integer> s)
-    {
+    public static int lastNum(Stack<Integer> s) {
         int x;
         Stack<Integer> temp = new Stack<Integer>();
-        while(!s.isEmpty())
-        {
+        while (!s.isEmpty()) {
             temp.push(s.pop());
         }
         x = temp.pop();
-        while (!temp.isEmpty())
-        {
+        while (!temp.isEmpty()) {
             s.push(temp.pop());
         }
         return x;
     }
 
-    public static Stack<Integer> sumOpposites(Stack<Integer> s)
-    {
-        int a,b;
+    public static Stack<Integer> sumOpposites(Stack<Integer> s) {
+        int a, b;
         Stack<Integer> temp = new Stack<>();
-        while (!s.isEmpty())
-        {
+        while (!s.isEmpty()) {
             a = s.pop();
             b = lastNum(s);
-            temp.push(a+b);
+            temp.push(a + b);
         }
         return temp;
     }
 
-    public static boolean canYouSum(Stack<Integer> s, int x)
-    {
+    public static boolean canYouSum(Stack<Integer> s, int x) {
         Stack<Integer> temp = getStack(s);
         int sum = 0;
         int a;
 
-        while (!temp.isEmpty())
-        {
+        while (!temp.isEmpty()) {
             a = temp.pop();
             sum += a;
 
-            if (x == sum)
-            {
+            if (x == sum) {
                 return true;
             }
         }
         return false;
     }
 
-    public static boolean isThereSum(Stack<Integer> s)
-    {
+    public static boolean isThereSum(Stack<Integer> s) {
         int x;
-        while (!s.isEmpty())
-        {
+        while (!s.isEmpty()) {
             x = s.pop();
 
-            if (canYouSum(s, x))
-            {
+            if (canYouSum(s, x)) {
                 return true;
             }
         }
         return false;
     }
 
-    public static boolean sumBeforeNum(Stack<Integer> s)
-    {
+    public static boolean sumBeforeNum(Stack<Integer> s) {
         Stack<Integer> temp1 = getStack(s);
         Stack<Integer> temp2 = getStack(s);
         int sum = 0;
         int a, x;
         temp2.pop();
 
-        while (!temp1.isEmpty())
-        {
+        while (!temp1.isEmpty()) {
             a = temp1.pop();
             sum += a;
             x = temp2.pop();
-            if (sum == x)
-            {
+            if (sum == x) {
                 return true;
             }
         }
         return false;
     }
 
-
-    public static int firstTimesInRow(Stack<Integer> s, int a)
-    {
+    public static int firstTimesInRow(Stack<Integer> s, int a) {
         int num = 0, x;
-        while (!s.isEmpty())
-        {
+        while (!s.isEmpty()) {
             x = s.pop();
-            if (x == a)
-            {
-                num ++;
-            }
-            else
-            {
+            if (x == a) {
+                num++;
+            } else {
                 s.push(x);
                 return num;
             }
@@ -257,10 +210,9 @@ public class Main {
         return true;
     }
 
-    public static void inputSt(Stack<TwoItems> st)
-    {
+    public static void inputSt(Stack<TwoItems> st) {
         TwoItems x;
-        x = new TwoItems(10,15);
+        x = new TwoItems(10, 15);
         st.push(x);
         x = new TwoItems(70, 73);
         st.push(x);
@@ -270,34 +222,28 @@ public class Main {
         st.push(x);
     }
 
-    public static void OutputSt(Stack<TwoItems> st)
-    {
-        Stack<TwoItems> tempSt =new Stack<TwoItems>();
+    public static void OutputSt(Stack<TwoItems> st) {
+        Stack<TwoItems> tempSt = new Stack<TwoItems>();
 
-        while(!st.isEmpty())
-        {
+        while (!st.isEmpty()) {
             TwoItems x = st.pop();
             tempSt.push(x);
             System.out.println(x.toString());
         }
-        while (!tempSt.isEmpty())
-        {
+        while (!tempSt.isEmpty()) {
             st.push(tempSt.pop());
         }
     }
 
-    public static Stack<TwoItems> getStackT(Stack<TwoItems> st)
-    {
+    public static Stack<TwoItems> getStackT(Stack<TwoItems> st) {
         Stack<TwoItems> tempSt1 = new Stack<TwoItems>();
         Stack<TwoItems> tempSt2 = new Stack<TwoItems>();
         TwoItems x;
 
-        while (!st.isEmpty())
-        {
+        while (!st.isEmpty()) {
             tempSt1.push(st.pop());
         }
-        while (!tempSt1.isEmpty())
-        {
+        while (!tempSt1.isEmpty()) {
             x = tempSt1.pop();
             tempSt2.push(x);
             st.push(x);
@@ -306,62 +252,45 @@ public class Main {
         return tempSt2;
     }
 
-    public static boolean notInRange(Stack<TwoItems> st, int x)
-    {
+    public static boolean notInRange(Stack<TwoItems> st, int x) {
         Stack<TwoItems> tempSt = getStackT(st);
         TwoItems s;
-        while (!tempSt.isEmpty())
-        {
+        while (!tempSt.isEmpty()) {
             s = tempSt.pop();
-            if (s.getNumA() <= x && x <= s.getNumB())
-            {
+            if (s.getNumA() <= x && x <= s.getNumB()) {
                 return false;
             }
         }
         return true;
     }
 
-
-
-    public static Stack<Integer> fusion(Stack<Integer> s1, Stack<Integer> s2)
-    {
+    public static Stack<Integer> fusion(Stack<Integer> s1, Stack<Integer> s2) {
         Stack<Integer> result = new Stack<Integer>();
         int a = 0, b, sum;
-        while (!s1.isEmpty())
-        {
+        while (!s1.isEmpty()) {
             a += s1.pop();
             b = s2.pop();
             sum = a + b;
-            if (sum < 10)
-            {
+            if (sum < 10) {
                 result.push(sum);
                 a = 0;
-            }
-            else
-            {
+            } else {
                 sum -= 10;
                 a = 1;
                 result.push(sum);
             }
 
         }
-        if (s2.isEmpty())
-        {
+        if (s2.isEmpty()) {
             return result;
-        }
-        else
-        {
-            while (!s2.isEmpty())
-            {
+        } else {
+            while (!s2.isEmpty()) {
                 a += s2.pop();
                 sum = a;
-                if (sum < 10)
-                {
+                if (sum < 10) {
                     result.push(sum);
                     a = 0;
-                }
-                else
-                {
+                } else {
                     sum -= 10;
                     result.push(sum);
                     a = 1;
@@ -372,165 +301,130 @@ public class Main {
         return result;
     }
 
-
-    public static void InputC(Stack<Character> s, char[] arr)
-    {
+    public static void InputC(Stack<Character> s, char[] arr) {
         for (char c : arr) {
             s.push(c);
         }
     }
 
-
-    public static void OutputC(Stack<Character> s)
-    {
+    public static void OutputC(Stack<Character> s) {
 
         Stack<Character> tempS = new Stack<Character>();
 
-        while(!s.isEmpty())
-        {
+        while (!s.isEmpty()) {
             char x = s.pop();
             System.out.println(x);
             tempS.push(x);
         }
 
-        while(!tempS.isEmpty())
-        {
+        while (!tempS.isEmpty()) {
             s.push(tempS.pop());
         }
     }
 
-    public static Stack<Character> largestChar(Stack<Character> s)
-        {
-            Stack<Character> s1 = new Stack<Character>();
-            char n, max = s.pop();
-            while (!s.isEmpty()) {
-                n = s.pop();
-                while (n != '#' && !s.isEmpty()) {
-                    if (n > max) {
-                        max = n;
-                    }
-                    n = s.pop();
+    public static Stack<Character> largestChar(Stack<Character> s) {
+        Stack<Character> s1 = new Stack<Character>();
+        char n, max = s.pop();
+        while (!s.isEmpty()) {
+            n = s.pop();
+            while (n != '#' && !s.isEmpty()) {
+                if (n > max) {
+                    max = n;
                 }
-                s1.push(max);
-                max = 'a';
+                n = s.pop();
             }
-            return s1;
+            s1.push(max);
+            max = 'a';
         }
+        return s1;
+    }
 
-
-    public static void printOutOfRange(Stack<TwoItems> st)
-    {
-        for (int i = 1; i < 101; i ++)
-        {
-            if (notInRange(st, i))
-            {
+    public static void printOutOfRange(Stack<TwoItems> st) {
+        for (int i = 1; i < 101; i++) {
+            if (notInRange(st, i)) {
                 System.out.println(i);
             }
         }
     }
 
-
-    public static Stack<TwoItems> strangeRanges(Stack<TwoItems> st)
-    {
-        Stack<TwoItems> sto = new Stack<TwoItems> ();
+    public static Stack<TwoItems> strangeRanges(Stack<TwoItems> st) {
+        Stack<TwoItems> sto = new Stack<TwoItems>();
         boolean first = true;
         TwoItems x;
         int a = 0;
-        for (int i = 1; i < 101; i ++)
-        {
-            if (notInRange(st, i))
-            {
-                if (first)
-                {
+        for (int i = 1; i < 101; i++) {
+            if (notInRange(st, i)) {
+                if (first) {
                     a = i;
                     first = false;
                 }
-            }
-            else
-            {
+            } else {
                 first = true;
-                if (a >= 1)
-                {
-                    x = new TwoItems(a, i-1);
+                if (a >= 1) {
+                    x = new TwoItems(a, i - 1);
                     sto.push(x);
                     a = 0;
                 }
             }
         }
-        if (!first)
-        {
+        if (!first) {
             x = new TwoItems(a, 100);
             sto.push(x);
         }
         return sto;
     }
 
-    public static int sumStack(Stack<Integer> s)
-    {
+    public static int sumStack(Stack<Integer> s) {
         Stack<Integer> temp = new Stack<Integer>();
         int sum = 0;
-        while (!s.isEmpty())
-        {
+        while (!s.isEmpty()) {
             int x = s.pop();
             sum += x;
             temp.push(x);
         }
-        while (!temp.isEmpty())
-        {
+        while (!temp.isEmpty()) {
             s.push(temp.pop());
         }
         return sum;
     }
 
-    public static boolean circus(Stack<Integer> s)
-    {
+    public static boolean circus(Stack<Integer> s) {
         Stack<Integer> temp = new Stack<Integer>();
         int sum;
-        while (!s.isEmpty())
-        {
+        while (!s.isEmpty()) {
             int x = s.pop();
             temp.push(x);
             sum = sumStack(s);
-            if (x > sum && !s.isEmpty())
-            {
+            if (x > sum && !s.isEmpty()) {
                 return false;
             }
         }
-        while (!temp.isEmpty())
-        {
+        while (!temp.isEmpty()) {
             s.push(temp.pop());
         }
         return true;
     }
 
-    public static Stack<Integer> notInBlock(Stack<Integer> s)
-    {
+    public static Stack<Integer> notInBlock(Stack<Integer> s) {
         Stack<Integer> p = new Stack<Integer>();
-        while(!s.isEmpty())
-        {
+        while (!s.isEmpty()) {
             int x = s.pop();
             int m = 1;
-            while (!s.isEmpty() && s.top() == x)
-            {
+            while (!s.isEmpty() && s.top() == x) {
                 x = s.pop();
                 m++;
             }
-            if (m == 1)
-            {
+            if (m == 1) {
                 p.push(x);
             }
         }
         return p;
     }
 
-
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         Stack<Integer> s1 = new Stack<Integer>();
-        int[] arr = new int[]{10, 5, 7, 2, 1};
+        int[] arr = new int[] { 10, 5, 7, 2, 1 };
         Input(s1, arr);
         Output(s1);
-        System.out.println(circus(s1));
-
     }
 }
