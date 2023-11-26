@@ -437,6 +437,24 @@ public class Main {
         return lst;
     }
 
+    public static int palindromeLen(Node<Integer> lst, Node<Integer> p)
+    {
+        Node<Integer> p1 = p.getNext();
+        Node<Integer> p2 = getPrevious(lst, p);
+        int x = 1;
+        while (p1 != null && p2 != null) 
+        {
+            if (p1.getValue() != p2.getValue())
+            {
+                return x;
+            }
+            x = x + 2;
+            p1 = p1.getNext();
+            p2 = getPrevious(lst, p2);
+        }
+        return x;
+    }
+
     public static void main(String[] args) {
         int[] a = { 10, 20, 41, 30 };
         Node<Integer> l = buildList(a);
