@@ -375,10 +375,72 @@ public class Main {
         return l;
     }
 
+    public static Node<Integer> deletePrevSmaller(Node<Integer> lst, Node<Integer> p)
+    {
+        Node<Integer> q = lst;
+        int x = p.getValue();
+        while (q.getNext()!= p && q.getNext() != null)
+        {
+            if (q.getNext().getValue() < x)
+            {
+                q.setNext(q.getNext().getNext());
+            }
+            else
+            {
+                q = q.getNext();
+            }
+        }
+        return lst;
+    }
+
+    public static Node<Integer> deleteAllPrevSmaller(Node<Integer> lst)
+    {
+        Node<Integer> p = lst;
+        while (p != null)
+        {
+            p = deletePrevSmaller(lst, p);
+            System.out.println(p);
+            p = p.getNext();
+        }
+        return lst;
+    }
+
+    public static Node<Integer> changeStatus(Node<Integer> lst)
+    {
+        Node<Integer> p = lst;
+        int x = p.getValue();
+        boolean ok = x % 2 == 0;
+        while (p.getNext() != null)
+        {
+            if (ok && p.getNext().getValue() % 2 != 0)
+            {
+                Node<Integer> t = new Node<Integer>(x, p.getNext());
+                p.setNext(t);
+                ok = false;
+                x = p.getNext().getNext().getValue();
+                p = p.getNext().getNext();
+            }
+            else if (!ok && p.getNext().getValue() % 2 == 0)
+            {
+                Node<Integer> t = new Node<Integer>(x, p.getNext());
+                p.setNext(t);
+                ok = true;
+                x = p.getNext().getNext().getValue();
+                p = p.getNext().getNext();
+            }
+            else
+            {
+                p = p.getNext();
+            }
+            x = x + p.getValue();
+        }
+        return lst;
+    }
+
     public static void main(String[] args) {
         int[] a = { 10, 20, 41, 30 };
         Node<Integer> l = buildList(a);
-        Node<Integer> l2 = cyclicMove(l);
-        System.out.println(equalCyclicLists(l, l2));
+        Node<Integer> p = changeStatus(l);
+        System.out.println(p);
     }
 }
