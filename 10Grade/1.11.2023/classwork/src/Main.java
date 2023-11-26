@@ -186,21 +186,20 @@ public class Main {
     }
 
     public static int NumSum(Node<Integer> lst) {
-        Node<Integer> p = lst;
-        if (p == null) {
+        if (lst == null) {
             return 0;
         }
-        return p.getValue() + NumSum(p.getNext());
+        return lst.getValue() + NumSum(lst.getNext());
     }
 
     public static int EvenNum(Node<Integer> lst) {
-        Node<Integer> p = lst;
-        if (p == null) {
+        if (lst == null) {
             return 0;
-        } else if (p.getValue() % 2 == 0) {
-            return 1 + EvenNum(p.getNext());
         }
-        return EvenNum(p.getNext());
+        else if (lst.getValue() % 2 == 0) {
+            return 1 + EvenNum(lst.getNext());
+        }
+        return EvenNum(lst.getNext());
     }
 
     public static Node<Integer> FlipList(Node<Integer> lst) {
@@ -246,13 +245,12 @@ public class Main {
     }
 
     public static boolean equalCyclicLists(Node<Integer> lstA, Node<Integer> lstB) {
-        Node<Integer> p = lstA;
         Node<Integer> p1 = lstB;
-        int num = listLength(p);
+        int num = listLength(lstA);
         for (int i = 0; i < num; i++) {
-            boolean equal = equalLists(p1, p);
+            boolean equal = equalLists(p1, lstA);
             System.out.println(equal);
-            System.out.println("l: " + p);
+            System.out.println("l: " + lstA);
             System.out.println("l2: " + p1);
             if (equal) {
                 return true;
@@ -307,6 +305,7 @@ public class Main {
                 if (i >= x.getNumA() && i <= x.getNumB()) {
                     ok = false;
                 }
+                p =p.getNext();
             }
             if (ok) {
                 System.out.println(i);
@@ -328,6 +327,7 @@ public class Main {
             if (inTwoItems(p.getValue(), n)) {
                 return true;
             }
+            p = p.getNext();
         }
         return false;
     }
@@ -349,6 +349,30 @@ public class Main {
             }
         }
         return p.getNext();
+    }
+
+    public static void deleteSmaller(Node<Integer> l)
+    {
+        Node<Integer> p = l;
+        int x = p.getValue();
+        while (p.getNext() != null) {
+            if (p.getNext().getValue() < x) {
+                p.setNext(p.getNext().getNext());
+            } else {
+                p = p.getNext();
+            }
+        }
+    }
+
+    public static Node<Integer> deleteAllSmaller(Node<Integer> l)
+    {
+        Node<Integer> p = l;
+        while (p != null)
+        {
+            deleteSmaller(p);
+            p = p.getNext();
+        }
+        return l;
     }
 
     public static void main(String[] args) {
