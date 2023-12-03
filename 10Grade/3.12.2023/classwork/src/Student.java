@@ -115,6 +115,20 @@ public class Student
         this.lstG = first.getNext();
     }
 
+    public boolean notFailing()
+    {
+        Node<Grade> p = this.lstG;
+        while (p != null)
+        {
+            if (p.getValue().getGrade() < 55)
+            {
+                return false;
+            }
+            p = p.getNext();
+        }
+        return true;
+    }
+
     public String toString()
     {
         StringBuilder s = new StringBuilder("Student id is : " + this.id + "\n");
