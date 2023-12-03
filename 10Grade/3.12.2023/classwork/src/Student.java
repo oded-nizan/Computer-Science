@@ -65,8 +65,7 @@ public class Student
             num ++;
             p = p.getNext();
         }
-        double avg = (double) sum / num;
-        return avg;
+        return (double) (sum / num);
     }
 
     public boolean isCodeSub(int codeSub)
@@ -127,6 +126,38 @@ public class Student
             p = p.getNext();
         }
         return true;
+    }
+
+    public void bonusCodeSub(int codeSub, int bonus)
+    {
+        Node<Grade> p = this.lstG;
+        boolean found = false;
+        while (p != null && !found)
+        {
+            if (p.getValue().getCodeSub() == codeSub)
+            {
+                p.getValue().bonus(bonus);
+            }
+            p = p.getNext();
+        }
+    }
+
+    public int highestGrade()
+    {
+        int max = 0;
+        int result = -1;
+        int temp;
+        Node<Grade> p = this.lstG;
+        while (p != null)
+        {
+            temp = p.getValue().getGrade();
+            if (temp > max)
+            {
+                max = temp;
+                result = p.getValue().getCodeSub();
+            }
+        }
+        return result;
     }
 
     public String toString()

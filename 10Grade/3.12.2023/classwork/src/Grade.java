@@ -29,6 +29,19 @@ public class Grade
         this.grade = grade;
     }
 
+    public void bonus(int bonus)
+    {
+        int grade = (int) (this.grade * bonus/100 + this.grade);
+        if (grade > 100)
+        {
+            this.grade = 100;
+        }
+        else
+        {
+            this.grade = grade;
+        }
+    }
+
     public String toString()
     {
         String x = "The code sub is " + codeSub + " and the grade is " + grade + ".";
